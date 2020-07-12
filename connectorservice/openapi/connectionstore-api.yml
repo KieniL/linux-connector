@@ -1,0 +1,79 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Connection Store Service
+servers:
+  - url: api/connectionstore
+paths:
+  /connstore:
+    get:
+      summary: GetConnectionStores
+      operationId: getonnectionStores
+      tags:
+        -  connstore
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreList'
+    post:
+      summary: AddConnectionStore
+      operationId: addConnectionStore
+      tags:
+        -  connstore
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'
+    put:
+      summary: UpdateConnectionStore
+      operationId: updateConnectionStore
+      tags:
+        -  connstore
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'
+    delete:
+      summary: DeleteConnectionStore
+      operationId: deleteConnectionStore
+      tags:
+        -  connstore
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'            
+components:
+  schemas:
+    ConnectionStoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConnectionStore'
+    ConnectionStore:
+      required:
+        - hostname
+        - port
+        - username
+        - password
+      properties:
+        hostname:
+          type: string
+        port:
+          type: number
+        username:
+          type: string
+        password:
+          type: string
+
+          

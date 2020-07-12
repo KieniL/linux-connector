@@ -1,0 +1,42 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Connector Service
+servers:
+  - url: api/connector
+paths:
+  /connection:
+    get:
+      summary: CreateConnection
+      operationId: createConnection
+      tags:
+        -  connection
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'
+    delete:
+      summary: DestroyConnection
+      operationId: destroyConnection
+      tags:
+        -  connection
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'            
+components:
+  schemas:
+    ConnectionStatus:
+      required:
+        - status
+      properties:
+        statuscode:
+          type: number
+          
+          

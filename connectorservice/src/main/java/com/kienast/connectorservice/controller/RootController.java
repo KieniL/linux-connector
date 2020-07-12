@@ -1,6 +1,7 @@
-package com.kienast.linuxconnector.controller;
+package com.kienast.connectorservice.controller;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -18,53 +19,55 @@ import com.jcraft.jsch.Session;
 
 @RestController
 public class RootController {
+	
+	Session session;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public String index() throws JSchException {
 
-		String pass = "12345670";
+		String pass = "123456";
 		String user = "root";
-		String host = "10.0.0.1";
+		String host = "10.0.0.0";
 		int port = 22;
 
 		try {
 			JSch jsch = new JSch();
-			Session session = jsch.getSession(user, host, port);
+			session = jsch.getSession(user, host, port);
 			session.setPassword(pass);
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect(3000);
-
-			ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
-
-			InputStream in = channelExec.getInputStream();
-
-			channelExec.setCommand("ls -la");
-			channelExec.connect();
-
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			String line;
-			int index = 0;
-
-			while ((line = reader.readLine()) != null) {
-				System.out.println(++index + " : " + line);
-			}
-
-			int exitStatus = channelExec.getExitStatus();
-			channelExec.disconnect();
-			session.disconnect();
-			if (exitStatus < 0) {
-				System.out.println("Done, but exit status not set!");
-			} else if (exitStatus > 0) {
-				System.out.println("Done, but with error!");
-			} else {
-				System.out.println("Done!");
-			}
 		} catch (Exception e) {
 			System.err.println("Error: " + e);
 		}
 
 		return "<h1>Hello at my Linux Connector Application</h1>";
+	}
+	
+	@RequestMapping(value = "/2", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public String index2() throws JSchException, IOException {
+		ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
+		InputStream in = channelExec.getInputStream();
+		channelExec.setCommand("ls -la");
+		channelExec.connect();
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		String line;
+		int index = 0;
+
+		while ((line = reader.readLine()) != null) {
+			System.out.println(++index + " : " + line);
+		}
+
+		int exitStatus = channelExec.getExitStatus();
+		if (exitStatus < 0) {
+			System.out.println("Done, but exit status not set!");
+		} else if (exitStatus > 0) {
+			System.out.println("Done, but with error!");
+		} else {
+			System.out.println("Done!");
+		}
+		return "<h1>Hello 2</h1>";
 	}
 }

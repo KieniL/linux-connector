@@ -1,4 +1,4 @@
-package com.kienast.linuxconnector.security;
+package com.kienast.connectorservice.security;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

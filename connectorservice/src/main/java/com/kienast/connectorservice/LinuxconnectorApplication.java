@@ -1,4 +1,4 @@
-package com.kienast.linuxconnector;
+package com.kienast.connectorservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

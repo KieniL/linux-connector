@@ -6,6 +6,7 @@
 package com.kienast.connectorservice.rest.api;
 
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +33,7 @@ public interface ConnectionApi {
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connection",
         produces = { "application/json" }, 
-        method = RequestMethod.GET)
+        method = RequestMethod.POST)
     ResponseEntity<ConnectionStatusModel> createConnection();
 
 
@@ -43,5 +44,14 @@ public interface ConnectionApi {
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
     ResponseEntity<ConnectionStatusModel> destroyConnection();
+
+
+    @ApiOperation(value = "GetActiveConnection", nickname = "getActiveConnection", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connection", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreModel.class, responseContainer = "List") })
+    @RequestMapping(value = "/connection",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<List<ConnectionStoreModel>> getActiveConnection();
 
 }

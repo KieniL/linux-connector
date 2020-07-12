@@ -7,6 +7,18 @@ servers:
 paths:
   /connection:
     get:
+      summary: GetActiveConnection
+      operationId: getActiveConnection
+      tags:
+        -  connection
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreList'
+    post:
       summary: CreateConnection
       operationId: createConnection
       tags:
@@ -32,6 +44,10 @@ paths:
                 $ref: '#/components/schemas/ConnectionStatus'            
 components:
   schemas:
+    ConnectionStoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConnectionStore'
     ConnectionStatus:
       required:
         - status

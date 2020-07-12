@@ -1,14 +1,14 @@
 package com.kienast.connectorservice.command;
 
 
-public class CreateConnectionCommand {
+public class DestroyConnectionCommand {
 	private String hostname;
 	private int port;
 	private String username;
 	private String password;
 	private String session;
 
-	public CreateConnectionCommand(String hostname, int port, String username, String password, String session) {
+	public DestroyConnectionCommand(String hostname, int port, String username, String password, String session) {
 		this.hostname = hostname;
 		this.port = port;
 		this.username = username;

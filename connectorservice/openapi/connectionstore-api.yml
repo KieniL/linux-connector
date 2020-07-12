@@ -8,7 +8,7 @@ paths:
   /connstore:
     get:
       summary: GetConnectionStores
-      operationId: getonnectionStores
+      operationId: getConnectionStores
       tags:
         -  connstore
       responses:
@@ -23,6 +23,12 @@ paths:
       operationId: addConnectionStore
       tags:
         -  connstore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
       responses:
         200:
           description: Schemas
@@ -35,6 +41,12 @@ paths:
       operationId: updateConnectionStore
       tags:
         -  connstore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
       responses:
         200:
           description: Schemas
@@ -47,6 +59,12 @@ paths:
       operationId: deleteConnectionStore
       tags:
         -  connstore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
       responses:
         200:
           description: Schemas
@@ -70,7 +88,7 @@ components:
         hostname:
           type: string
         port:
-          type: number
+          type: integer
         username:
           type: string
         password:

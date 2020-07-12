@@ -7,8 +7,8 @@ servers:
 paths:
   /connection:
     get:
-      summary: GetActiveConnection
-      operationId: getActiveConnection
+      summary: GetActiveConnections
+      operationId: getActiveConnections
       tags:
         -  connection
       responses:
@@ -17,12 +17,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionStoreList'
+                $ref: '#/components/schemas/ConnectionList'
     post:
       summary: CreateConnection
       operationId: createConnection
       tags:
         -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Connection'
       responses:
         200:
           description: Schemas
@@ -30,11 +36,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionStatus'
+    put:
+      summary: AddCommand
+      operationId: addCommand
+      tags:
+        -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionCommandRequest'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionCommandResponse'
     delete:
       summary: DestroyConnection
       operationId: destroyConnection
       tags:
         -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Connection'
       responses:
         200:
           description: Schemas
@@ -44,15 +74,48 @@ paths:
                 $ref: '#/components/schemas/ConnectionStatus'            
 components:
   schemas:
-    ConnectionStoreList:
+    ConnectionList:
       type: array
       items:
-        $ref: '#/components/schemas/ConnectionStore'
+        $ref: '#/components/schemas/Connection'
+    Connection:
+      required:
+        - hostname
+        - port
+        - username
+        - password
+        - session
+      properties:
+        hostname:
+          type: string
+        port:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        session:
+          type: string
     ConnectionStatus:
       required:
         - status
       properties:
         statuscode:
-          type: number
+          type: integer
+    ConnectionCommandRequest:
+      required:
+        - channel
+        - command
+      properties:
+        session:
+          type: string
+        command:
+          type: string
+    ConnectionCommandResponse:
+      required:
+        - response
+      properties:
+        response:
+          type: string
           
           

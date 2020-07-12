@@ -9,10 +9,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ConnectionStoreModel
+ * ConnectionModel
  */
 
-public class ConnectionStoreModel   {
+public class ConnectionModel   {
   @JsonProperty("hostname")
   private String hostname;
 
@@ -25,7 +25,10 @@ public class ConnectionStoreModel   {
   @JsonProperty("password")
   private String password;
 
-  public ConnectionStoreModel hostname(String hostname) {
+  @JsonProperty("session")
+  private String session;
+
+  public ConnectionModel hostname(String hostname) {
     this.hostname = hostname;
     return this;
   }
@@ -46,7 +49,7 @@ public class ConnectionStoreModel   {
     this.hostname = hostname;
   }
 
-  public ConnectionStoreModel port(Integer port) {
+  public ConnectionModel port(Integer port) {
     this.port = port;
     return this;
   }
@@ -67,7 +70,7 @@ public class ConnectionStoreModel   {
     this.port = port;
   }
 
-  public ConnectionStoreModel username(String username) {
+  public ConnectionModel username(String username) {
     this.username = username;
     return this;
   }
@@ -88,7 +91,7 @@ public class ConnectionStoreModel   {
     this.username = username;
   }
 
-  public ConnectionStoreModel password(String password) {
+  public ConnectionModel password(String password) {
     this.password = password;
     return this;
   }
@@ -109,6 +112,27 @@ public class ConnectionStoreModel   {
     this.password = password;
   }
 
+  public ConnectionModel session(String session) {
+    this.session = session;
+    return this;
+  }
+
+  /**
+   * Get session
+   * @return session
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getSession() {
+    return session;
+  }
+
+  public void setSession(String session) {
+    this.session = session;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -118,27 +142,29 @@ public class ConnectionStoreModel   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectionStoreModel connectionStore = (ConnectionStoreModel) o;
-    return Objects.equals(this.hostname, connectionStore.hostname) &&
-        Objects.equals(this.port, connectionStore.port) &&
-        Objects.equals(this.username, connectionStore.username) &&
-        Objects.equals(this.password, connectionStore.password);
+    ConnectionModel connection = (ConnectionModel) o;
+    return Objects.equals(this.hostname, connection.hostname) &&
+        Objects.equals(this.port, connection.port) &&
+        Objects.equals(this.username, connection.username) &&
+        Objects.equals(this.password, connection.password) &&
+        Objects.equals(this.session, connection.session);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostname, port, username, password);
+    return Objects.hash(hostname, port, username, password, session);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectionStoreModel {\n");
+    sb.append("class ConnectionModel {\n");
     
     sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    session: ").append(toIndentedString(session)).append("\n");
     sb.append("}");
     return sb.toString();
   }

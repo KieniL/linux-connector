@@ -1,8 +1,6 @@
 package com.kienast.connectorservice.model;
 
-import java.math.BigDecimal;
-
-public class ConnectionStore {
+public class Connection {
 
 	private String hostname;
 
@@ -12,12 +10,16 @@ public class ConnectionStore {
 
 	private String password;
 	
+	private String session;
+	
+	
 
-	public ConnectionStore(String hostname, int port, String username, String password) {
+	public Connection(String hostname, int port, String username, String password, String session) {
 		this.hostname = hostname;
 		this.port = port;
 		this.username = username;
 		this.password = password;
+		this.session = session;
 	}
 
 	public String getHostname() {
@@ -51,4 +53,14 @@ public class ConnectionStore {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getSession() {
+		return session;
+	}
+
+	public void setSession(String session) {
+		this.session = session;
+	}
+
+
 }

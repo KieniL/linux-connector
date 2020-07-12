@@ -33,8 +33,9 @@ public interface ConnstoreApi {
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStatusModel> addConnectionStore();
+    ResponseEntity<ConnectionStatusModel> addConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 
     @ApiOperation(value = "DeleteConnectionStore", nickname = "deleteConnectionStore", notes = "", response = ConnectionStatusModel.class, tags={ "connstore", })
@@ -42,17 +43,18 @@ public interface ConnstoreApi {
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.DELETE)
-    ResponseEntity<ConnectionStatusModel> deleteConnectionStore();
+    ResponseEntity<ConnectionStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 
-    @ApiOperation(value = "GetConnectionStores", nickname = "getonnectionStores", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connstore", })
+    @ApiOperation(value = "GetConnectionStores", nickname = "getConnectionStores", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connstore", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreModel.class, responseContainer = "List") })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<ConnectionStoreModel>> getonnectionStores();
+    ResponseEntity<List<ConnectionStoreModel>> getConnectionStores();
 
 
     @ApiOperation(value = "UpdateConnectionStore", nickname = "updateConnectionStore", notes = "", response = ConnectionStatusModel.class, tags={ "connstore", })
@@ -60,7 +62,8 @@ public interface ConnstoreApi {
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<ConnectionStatusModel> updateConnectionStore();
+    ResponseEntity<ConnectionStatusModel> updateConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 }

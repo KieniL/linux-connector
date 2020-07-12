@@ -5,8 +5,10 @@
  */
 package com.kienast.connectorservice.rest.api;
 
+import com.kienast.connectorservice.rest.api.model.ConnectionCommandRequestModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
-import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,13 +30,24 @@ import java.util.Map;
 @Api(value = "connection", description = "the connection API")
 public interface ConnectionApi {
 
+    @ApiOperation(value = "AddCommand", nickname = "addCommand", notes = "", response = ConnectionCommandResponseModel.class, tags={ "connection", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionCommandResponseModel.class) })
+    @RequestMapping(value = "/connection",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
+    ResponseEntity<ConnectionCommandResponseModel> addCommand(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionCommandRequestModel connectionCommandRequestModel);
+
+
     @ApiOperation(value = "CreateConnection", nickname = "createConnection", notes = "", response = ConnectionStatusModel.class, tags={ "connection", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connection",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStatusModel> createConnection();
+    ResponseEntity<ConnectionStatusModel> createConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionModel connectionModel);
 
 
     @ApiOperation(value = "DestroyConnection", nickname = "destroyConnection", notes = "", response = ConnectionStatusModel.class, tags={ "connection", })
@@ -42,16 +55,17 @@ public interface ConnectionApi {
         @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
     @RequestMapping(value = "/connection",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.DELETE)
-    ResponseEntity<ConnectionStatusModel> destroyConnection();
+    ResponseEntity<ConnectionStatusModel> destroyConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionModel connectionModel);
 
 
-    @ApiOperation(value = "GetActiveConnection", nickname = "getActiveConnection", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connection", })
+    @ApiOperation(value = "GetActiveConnections", nickname = "getActiveConnections", notes = "", response = ConnectionModel.class, responseContainer = "List", tags={ "connection", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreModel.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionModel.class, responseContainer = "List") })
     @RequestMapping(value = "/connection",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<ConnectionStoreModel>> getActiveConnection();
+    ResponseEntity<List<ConnectionModel>> getActiveConnections();
 
 }

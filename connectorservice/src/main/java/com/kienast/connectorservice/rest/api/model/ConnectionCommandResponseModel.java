@@ -9,31 +9,32 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ConnectionStatusModel
+ * ConnectionCommandResponseModel
  */
 
-public class ConnectionStatusModel   {
-  @JsonProperty("statuscode")
-  private Integer statuscode;
+public class ConnectionCommandResponseModel   {
+  @JsonProperty("response")
+  private String response;
 
-  public ConnectionStatusModel statuscode(Integer statuscode) {
-    this.statuscode = statuscode;
+  public ConnectionCommandResponseModel response(String response) {
+    this.response = response;
     return this;
   }
 
   /**
-   * Get statuscode
-   * @return statuscode
+   * Get response
+   * @return response
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
-  public Integer getStatuscode() {
-    return statuscode;
+  public String getResponse() {
+    return response;
   }
 
-  public void setStatuscode(Integer statuscode) {
-    this.statuscode = statuscode;
+  public void setResponse(String response) {
+    this.response = response;
   }
 
 
@@ -45,21 +46,21 @@ public class ConnectionStatusModel   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectionStatusModel connectionStatus = (ConnectionStatusModel) o;
-    return Objects.equals(this.statuscode, connectionStatus.statuscode);
+    ConnectionCommandResponseModel connectionCommandResponse = (ConnectionCommandResponseModel) o;
+    return Objects.equals(this.response, connectionCommandResponse.response);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(statuscode);
+    return Objects.hash(response);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectionStatusModel {\n");
+    sb.append("class ConnectionCommandResponseModel {\n");
     
-    sb.append("    statuscode: ").append(toIndentedString(statuscode)).append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("}");
     return sb.toString();
   }

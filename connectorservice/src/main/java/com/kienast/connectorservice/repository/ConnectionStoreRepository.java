@@ -2,15 +2,20 @@ package com.kienast.connectorservice.repository;
 
 import java.util.List;
 
+import com.kienast.connectorservice.command.DestroyConnectionStoreCommand;
+import com.kienast.connectorservice.command.UpdateConnectionStoreCommand;
 import com.kienast.connectorservice.model.ConnectionStore;
+import com.kienast.connectorservice.model.ConnectionStoreStatus;
 
 public interface ConnectionStoreRepository {
 
-	List<ConnectionStore> getStoredConnections();
+	List<ConnectionStore> getConnections();
 	
-	ConnectionStore save(ConnectionStore connStore);
+	ConnectionStoreStatus save(ConnectionStore connStore);
 	
-	ConnectionStore update(ConnectionStore connStore);
+	ConnectionStoreStatus update(UpdateConnectionStoreCommand connStore);
 	
-	boolean delete(ConnectionStore connStore); 
+	ConnectionStoreStatus delete(DestroyConnectionStoreCommand connStore);
+	
+	ConnectionStore findByString(int storeId);
 }

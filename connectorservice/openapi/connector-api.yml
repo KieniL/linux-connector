@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Connection'
+              $ref: '#/components/schemas/ConnectionStoreId'
       responses:
         200:
           description: Schemas
@@ -74,6 +74,12 @@ paths:
                 $ref: '#/components/schemas/ConnectionStatus'            
 components:
   schemas:
+    ConnectionStoreId:
+      required:
+        - store
+      properties:
+        id:
+          type: integer
     ConnectionList:
       type: array
       items:

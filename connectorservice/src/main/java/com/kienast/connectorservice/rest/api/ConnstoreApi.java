@@ -5,8 +5,8 @@
  */
 package com.kienast.connectorservice.rest.api;
 
-import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionStoreStatusModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,24 +28,24 @@ import java.util.Map;
 @Api(value = "connstore", description = "the connstore API")
 public interface ConnstoreApi {
 
-    @ApiOperation(value = "AddConnectionStore", nickname = "addConnectionStore", notes = "", response = ConnectionStatusModel.class, tags={ "connstore", })
+    @ApiOperation(value = "AddConnectionStore", nickname = "addConnectionStore", notes = "", response = ConnectionStoreStatusModel.class, tags={ "connstore", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreStatusModel.class) })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStatusModel> addConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> addConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 
-    @ApiOperation(value = "DeleteConnectionStore", nickname = "deleteConnectionStore", notes = "", response = ConnectionStatusModel.class, tags={ "connstore", })
+    @ApiOperation(value = "DeleteConnectionStore", nickname = "deleteConnectionStore", notes = "", response = ConnectionStoreStatusModel.class, tags={ "connstore", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreStatusModel.class) })
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.DELETE)
-    ResponseEntity<ConnectionStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 
     @ApiOperation(value = "GetConnectionStores", nickname = "getConnectionStores", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connstore", })
@@ -57,13 +57,13 @@ public interface ConnstoreApi {
     ResponseEntity<List<ConnectionStoreModel>> getConnectionStores();
 
 
-    @ApiOperation(value = "UpdateConnectionStore", nickname = "updateConnectionStore", notes = "", response = ConnectionStatusModel.class, tags={ "connstore", })
+    @ApiOperation(value = "UpdateConnectionStore", nickname = "updateConnectionStore", notes = "", response = ConnectionStoreStatusModel.class, tags={ "connstore", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStatusModel.class) })
-    @RequestMapping(value = "/connstore",
+        @ApiResponse(code = 200, message = "Schemas", response = ConnectionStoreStatusModel.class) })
+    @RequestMapping(value = "/connstore/{storeId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
-        method = RequestMethod.PUT)
-    ResponseEntity<ConnectionStatusModel> updateConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+        method = RequestMethod.POST)
+    ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(@ApiParam(value = "the id in the list of the store",required=true) @PathVariable("storeId") Integer storeId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 }

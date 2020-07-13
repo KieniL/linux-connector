@@ -64,7 +64,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Connection'
+              $ref: '#/components/schemas/DestroyConnectionRequest'
       responses:
         200:
           description: Schemas
@@ -116,6 +116,12 @@ components:
         - response
       properties:
         response:
+          type: string
+    DestroyConnectionRequest:
+      required:
+        - session
+      properties:
+        session:
           type: string
           
           

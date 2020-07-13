@@ -26,6 +26,7 @@ import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseMode
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
+import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import com.kienast.connectorservice.service.ConnectionService;
 
 @RestController
@@ -54,13 +55,12 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		ConnectionStatusModel response = new ConnectionStatusAdapter(connectionStatus).createJson();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	
 	@Override
-	public ResponseEntity<ConnectionStatusModel> destroyConnection(@Valid ConnectionModel connectionModel) {
-		DestroyConnectionCommand command = new DestroyConnectionCommand(connectionModel.getHostname(),
-				connectionModel.getPort(), connectionModel.getUsername(),
-				connectionModel.getPassword(), connectionModel.getSession());
+	public ResponseEntity<ConnectionStatusModel> destroyConnection(
+			@Valid DestroyConnectionRequestModel destroyConnectionRequestModel) {
+		DestroyConnectionCommand command = new DestroyConnectionCommand(destroyConnectionRequestModel.getSession());
 		ConnectionStatus connectionStatus = connectionService.destroyConnection(command);
 		ConnectionStatusModel response = new ConnectionStatusAdapter(connectionStatus).createJson();
 		return ResponseEntity.ok(response);
@@ -119,6 +119,8 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 

@@ -9,6 +9,7 @@ import com.kienast.connectorservice.rest.api.model.ConnectionCommandRequestModel
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
+import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -57,7 +58,7 @@ public interface ConnectionApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.DELETE)
-    ResponseEntity<ConnectionStatusModel> destroyConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionModel connectionModel);
+    ResponseEntity<ConnectionStatusModel> destroyConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody DestroyConnectionRequestModel destroyConnectionRequestModel);
 
 
     @ApiOperation(value = "GetActiveConnections", nickname = "getActiveConnections", notes = "", response = ConnectionModel.class, responseContainer = "List", tags={ "connection", })

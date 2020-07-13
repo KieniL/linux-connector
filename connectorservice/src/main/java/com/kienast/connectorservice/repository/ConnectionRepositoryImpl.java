@@ -31,11 +31,12 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 		try {
 			Session session;
 			JSch jsch = new JSch();
+			jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
+			
+			System.out.println(System.getProperty("user.home")+"/.ssh/known_hosts");
+			System.out.println(jsch.getHostKeyRepository().getHostKey()[0].getType());
 			session = jsch.getSession(connection.getUsername(), connection.getHostname(), connection.getPort());
 			session.setPassword(connection.getPassword());
-			java.util.Properties config = new java.util.Properties();
-			config.put("StrictHostKeyChecking", "no");
-			session.setConfig(config);
 			session.connect(3000);
 			
 

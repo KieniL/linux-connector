@@ -32,9 +32,7 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			Session session;
 			JSch jsch = new JSch();
 			jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
-			
-			System.out.println(System.getProperty("user.home")+"/.ssh/known_hosts");
-			System.out.println(jsch.getHostKeyRepository().getHostKey()[0].getType());
+
 			session = jsch.getSession(connection.getUsername(), connection.getHostname(), connection.getPort());
 			session.setPassword(connection.getPassword());
 			session.connect(3000);
@@ -61,7 +59,6 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 	public ConnectionStatus delete(DestroyConnectionCommand command) {
 		Session session = null;
 		Connection connection = null;
-		ChannelExec channelExec = null;
 		
 		for(Session s : sessions) {
 			if(s.toString().equals(command.getSession())) {
@@ -102,9 +99,9 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			}
 		}
 		
-		
+		ChannelExec channelExec = null;
 		try {
-			ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
+			channelExec = (ChannelExec) session.openChannel("exec");
 			InputStream in = channelExec.getInputStream();
 			channelExec.setCommand(command.getCommand());
 			channelExec.connect();
@@ -125,14 +122,14 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			} else {
 				response += "Done!\n";
 			}
+			
 		} catch (JSchException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
+		channelExec.disconnect();
 		return response;
 	}
 

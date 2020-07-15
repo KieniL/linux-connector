@@ -8,8 +8,8 @@ package com.kienast.connectorservice.rest.api;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
-import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdRequestModel;
 import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +49,7 @@ public interface ConnectionApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStatusModel> createConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreIdRequestModel connectionStoreIdRequestModel);
+    ResponseEntity<ConnectionStatusModel> createConnection(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionRequestModel connectionRequestModel);
 
 
     @ApiOperation(value = "DestroyConnection", nickname = "destroyConnection", notes = "", response = ConnectionStatusModel.class, tags={ "connection", })

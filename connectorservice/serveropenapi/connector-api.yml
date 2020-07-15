@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ConnectionStoreIdRequest'
+              $ref: '#/components/schemas/ConnectionRequest'
       responses:
         200:
           description: Schemas
@@ -74,7 +74,7 @@ paths:
                 $ref: '#/components/schemas/ConnectionStatus'            
 components:
   schemas:
-    ConnectionStoreIdRequest:
+    ConnectionRequest:
       required:
         - store
         - token

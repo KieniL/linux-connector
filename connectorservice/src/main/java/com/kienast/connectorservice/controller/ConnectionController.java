@@ -30,6 +30,7 @@ import com.kienast.connectorservice.rest.api.ConnstoreApi;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdRequestModel;
@@ -64,18 +65,15 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		return ResponseEntity.ok(response);
 	}
 
-
 	
 	@Override
 	public ResponseEntity<ConnectionStatusModel> createConnection(
-			@Valid ConnectionStoreIdRequestModel connectionStoreIdRequestModel) {
-		
-		
-		if (tokenService.validateToken(connectionStoreIdRequestModel.getToken()) == null) {
-			throw(new NotAuthorizedException(connectionStoreIdRequestModel.getToken()));
+			@Valid ConnectionRequestModel connectionRequestModel) {
+		if (tokenService.validateToken(connectionRequestModel.getToken()) == null) {
+			throw(new NotAuthorizedException(connectionRequestModel.getToken()));
 		}
 		
-		CreateConnectionCommand command = new CreateConnectionCommand(connectionStoreIdRequestModel.getId());
+		CreateConnectionCommand command = new CreateConnectionCommand(connectionRequestModel.getId());
 		ConnectionStatus connectionStatus = connectionService.createConnection(command);
 		ConnectionStatusModel response = new ConnectionStatusAdapter(connectionStatus).createJson();
 		return ResponseEntity.ok(response);
@@ -185,6 +183,10 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);
 	}
+
+
+
+
 
 
 

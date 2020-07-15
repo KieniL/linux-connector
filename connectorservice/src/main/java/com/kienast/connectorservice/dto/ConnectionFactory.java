@@ -1,19 +1,15 @@
 package com.kienast.connectorservice.dto;
 
 import com.kienast.connectorservice.command.CreateConnectionCommand;
-import com.kienast.connectorservice.model.Connection;
+import com.kienast.connectorservice.model.ConnectionRequest;
 
 public final class ConnectionFactory {
 
 	private ConnectionFactory() {
 	}
 
-	public static Connection createNew(CreateConnectionCommand command) {
-		return new Connection(
-				command.getHostname(),
-				command.getPort(),
-				command.getUsername(),
-				command.getPassword(),
-				command.getSession());
+	public static ConnectionRequest createNew(CreateConnectionCommand command) {
+		return new ConnectionRequest(
+				command.getStoreId());
 	}
 }

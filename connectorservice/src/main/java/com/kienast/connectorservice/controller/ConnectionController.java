@@ -10,31 +10,43 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kienast.connectorservice.command.CreateConnectionCommand;
+import com.kienast.connectorservice.command.CreateConnectionStoreCommand;
 import com.kienast.connectorservice.command.DestroyConnectionCommand;
+import com.kienast.connectorservice.command.DestroyConnectionStoreCommand;
 import com.kienast.connectorservice.command.ShellCommand;
+import com.kienast.connectorservice.command.UpdateConnectionStoreCommand;
 import com.kienast.connectorservice.dto.CommandAdapter;
 import com.kienast.connectorservice.dto.ConnectionAdapter;
 import com.kienast.connectorservice.dto.ConnectionStatusAdapter;
 import com.kienast.connectorservice.dto.ConnectionStoreAdapter;
+import com.kienast.connectorservice.dto.ConnectionStoreStatusAdapter;
 import com.kienast.connectorservice.model.Connection;
 import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.model.ConnectionStore;
+import com.kienast.connectorservice.model.ConnectionStoreStatus;
 import com.kienast.connectorservice.rest.api.ConnectionApi;
 import com.kienast.connectorservice.rest.api.ConnstoreApi;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionStoreStatusModel;
+import com.kienast.connectorservice.rest.api.model.ConnectionStoreStringModel;
 import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import com.kienast.connectorservice.service.ConnectionService;
+import com.kienast.connectorservice.service.ConnectionStoreService;
 
 @RestController
 public class ConnectionController implements ConnectionApi, ConnstoreApi {
 
 	@Autowired
 	private ConnectionService connectionService;
-
+	
+	
+	@Autowired
+	private ConnectionStoreService connectionStoreService;
 	
 	@Override
 	public ResponseEntity<List<ConnectionModel>> getActiveConnections() {
@@ -46,15 +58,16 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		return ResponseEntity.ok(response);
 	}
 
+	
 	@Override
-	public ResponseEntity<ConnectionStatusModel> createConnection(@Valid ConnectionModel connectionModel) {
-		CreateConnectionCommand command = new CreateConnectionCommand(connectionModel.getHostname(),
-				connectionModel.getPort(), connectionModel.getUsername(),
-				connectionModel.getPassword(), connectionModel.getSession());
+	public ResponseEntity<ConnectionStatusModel> createConnection(
+			@Valid ConnectionStoreIdModel connectionStoreIdModel) {
+		CreateConnectionCommand command = new CreateConnectionCommand(connectionStoreIdModel.getId());
 		ConnectionStatus connectionStatus = connectionService.createConnection(command);
 		ConnectionStatusModel response = new ConnectionStatusAdapter(connectionStatus).createJson();
 		return ResponseEntity.ok(response);
 	}
+
 
 	
 	@Override
@@ -85,7 +98,7 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 
 	@Override
 	public ResponseEntity<List<ConnectionStoreModel>> getConnectionStores() {
-		List<ConnectionStore> storedConnections = connectionService.getStoredConnections();
+		List<ConnectionStore> storedConnections = connectionStoreService.getStoredConnections();
 		
 		List<ConnectionStoreModel> response = storedConnections.stream().map(ConnectionStoreAdapter::new)
 				.map(ConnectionStoreAdapter::createJson).collect(Collectors.toList());
@@ -95,30 +108,43 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 	
 	
 	@Override
-	public ResponseEntity<ConnectionStatusModel> addConnectionStore(@Valid ConnectionStoreModel connectionStoreModel) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<ConnectionStoreStatusModel> addConnectionStore(@Valid ConnectionStoreModel connectionStoreModel) {
+		CreateConnectionStoreCommand command = new CreateConnectionStoreCommand(connectionStoreModel.getHostname(),
+				connectionStoreModel.getPort(), connectionStoreModel.getUsername(),
+				connectionStoreModel.getPassword());
+		ConnectionStoreStatus connStoreStatus = connectionStoreService.addStoredConnection(command);
+		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
+		return ResponseEntity.ok(response);
 	}
 
 
 
 
 	@Override
-	public ResponseEntity<ConnectionStatusModel> deleteConnectionStore(
+	public ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(
 			@Valid ConnectionStoreModel connectionStoreModel) {
-		// TODO Auto-generated method stub
-		return null;
+		DestroyConnectionStoreCommand command = new DestroyConnectionStoreCommand(connectionStoreModel.getHostname(),
+				connectionStoreModel.getPort(), connectionStoreModel.getUsername(), connectionStoreModel.getPassword());
+		ConnectionStoreStatus connStoreStatus = connectionStoreService.deleteStoredConnection(command);
+		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
+		return ResponseEntity.ok(response);
 	}
-
-
 
 
 	@Override
-	public ResponseEntity<ConnectionStatusModel> updateConnectionStore(
+	public ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(Integer storeId,
 			@Valid ConnectionStoreModel connectionStoreModel) {
-		// TODO Auto-generated method stub
-		return null;
+		UpdateConnectionStoreCommand command = new UpdateConnectionStoreCommand(storeId, connectionStoreModel.getHostname(),
+				connectionStoreModel.getPort(), connectionStoreModel.getUsername(), connectionStoreModel.getPassword());
+		ConnectionStoreStatus connStoreStatus = connectionStoreService.updateStoredConnection(command);
+		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
+		return ResponseEntity.ok(response);
 	}
+
+
+
+
+
 
 
 

@@ -13,9 +13,11 @@ import com.kienast.connectorservice.model.Connection;
 import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.model.ConnectionStore;
 import com.kienast.connectorservice.repository.ConnectionRepository;
+import com.kienast.connectorservice.repository.ConnectionStoreRepository;
 import com.kienast.connectorservice.usecase.CreateConnection;
 import com.kienast.connectorservice.usecase.DestroyConnection;
 import com.kienast.connectorservice.usecase.GetActiveConnections;
+import com.kienast.connectorservice.usecase.GetStoredConnections;
 import com.kienast.connectorservice.usecase.ShellCommandUseCase;
 
 @Component
@@ -43,33 +45,5 @@ public class ConnectionServiceImpl implements ConnectionService {
 	public String addCommand(ShellCommand command) {
 		return new ShellCommandUseCase(connectionRepository, command).addCommand();
 	}
-
-	@Override
-	public List<ConnectionStore> getStoredConnections() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ConnectionStore addStoredConnection(ConnectionStore connStore) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ConnectionStore updateStoredConnection(ConnectionStore connStore) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean deleteStoredConnection(ConnectionStore connStore) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-	
 
 }

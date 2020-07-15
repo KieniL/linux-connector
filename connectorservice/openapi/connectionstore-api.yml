@@ -35,25 +35,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionStatus'
-    put:
-      summary: UpdateConnectionStore
-      operationId: updateConnectionStore
-      tags:
-        -  connstore
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConnectionStore'
-      responses:
-        200:
-          description: Schemas
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectionStatus'
+                $ref: '#/components/schemas/ConnectionStoreStatus'
     delete:
       summary: DeleteConnectionStore
       operationId: deleteConnectionStore
@@ -71,9 +53,45 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectionStatus'            
+                $ref: '#/components/schemas/ConnectionStoreStatus'    
+  /connstore/{storeId}:
+    post:
+      summary: UpdateConnectionStore
+      operationId: updateConnectionStore
+      tags:
+        -  connstore
+      parameters:
+        - $ref: "#/components/parameters/storeId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreStatus'
+        
 components:
+  parameters:
+    storeId:
+      name: storeId
+      in: path
+      required: true
+      description: the id in the list of the store
+      schema:
+        type: integer
   schemas:
+    ConnectionStoreStatus:
+      required:
+        - status
+      properties:
+        status:
+          type: integer
     ConnectionStoreList:
       type: array
       items:

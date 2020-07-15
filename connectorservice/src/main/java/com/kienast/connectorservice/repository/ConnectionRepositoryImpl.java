@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jcraft.jsch.ChannelExec;
@@ -16,33 +17,39 @@ import com.jcraft.jsch.Session;
 import com.kienast.connectorservice.command.DestroyConnectionCommand;
 import com.kienast.connectorservice.command.ShellCommand;
 import com.kienast.connectorservice.model.Connection;
+import com.kienast.connectorservice.model.ConnectionRequest;
 import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.model.ConnectionStore;
 
 @Component
 public class ConnectionRepositoryImpl implements ConnectionRepository {
 	
+	@Autowired
+	private ConnectionStoreRepository connectionStoreRepository;
+	
 	List<Connection> connections = new ArrayList<Connection>();
 	List<Session> sessions = new ArrayList<Session>();
 
 	@Override
-	public ConnectionStatus save(Connection connection) {
+	public ConnectionStatus save(ConnectionRequest connectionRequest) {
         int status = 200;
 		try {
+			
+			ConnectionStore store = connectionStoreRepository.findByString(connectionRequest.getStoreId());
 			Session session;
 			JSch jsch = new JSch();
 			jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
 
-			session = jsch.getSession(connection.getUsername(), connection.getHostname(), connection.getPort());
-			session.setPassword(connection.getPassword());
+			session = jsch.getSession(store.getUsername(), store.getHostname(), store.getPort());
+			session.setPassword(store.getPassword());
 			session.connect(3000);
 			
 
 			
-			connections.add(new Connection(connection.getHostname(),
-					connection.getPort(),
-					connection.getUsername(),
-					connection.getPassword(),
+			connections.add(new Connection(store.getHostname(),
+					store.getPort(),
+					store.getUsername(),
+					store.getPassword(),
 					session.toString()));
 			
 			sessions.add(session);
@@ -83,7 +90,7 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 	}
 
 	@Override
-	public List<Connection> getActiveConnections() {
+	public List<Connection> getConnections() {
 		return connections;
 	}
 

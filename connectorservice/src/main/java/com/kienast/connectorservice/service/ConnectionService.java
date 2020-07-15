@@ -21,13 +21,5 @@ public interface ConnectionService {
 	
 	String addCommand(ShellCommand command);
 	
-	List<ConnectionStore> getStoredConnections();
-	
-	ConnectionStore addStoredConnection(ConnectionStore connStore);
-	
-	ConnectionStore updateStoredConnection(ConnectionStore connStore);
-	
-	boolean deleteStoredConnection(ConnectionStore connStore); 
-	
-	
+
 }

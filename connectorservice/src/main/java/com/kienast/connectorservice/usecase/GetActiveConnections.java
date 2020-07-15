@@ -18,6 +18,6 @@ public class GetActiveConnections {
 	}
 
 	public List<Connection> getConnections() {
-		return connectionRepository.getActiveConnections();
+		return connectionRepository.getConnections();
 	}
 }

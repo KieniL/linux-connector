@@ -44,7 +44,7 @@ public interface ConnstoreApi {
     @RequestMapping(value = "/connstore",
         produces = { "application/json" }, 
         consumes = { "application/json" },
-        method = RequestMethod.DELETE)
+        method = RequestMethod.HEAD)
     ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 

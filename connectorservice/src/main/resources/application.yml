@@ -3,3 +3,4 @@ server:
 spring:
   application:
     name: connectorservice
+authURL: ${AUTH_URL:test1234}

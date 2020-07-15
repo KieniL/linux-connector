@@ -19,6 +19,9 @@ public class ConnectionCommandRequestModel   {
   @JsonProperty("command")
   private String command;
 
+  @JsonProperty("token")
+  private String token;
+
   public ConnectionCommandRequestModel session(String session) {
     this.session = session;
     return this;
@@ -60,6 +63,27 @@ public class ConnectionCommandRequestModel   {
     this.command = command;
   }
 
+  public ConnectionCommandRequestModel token(String token) {
+    this.token = token;
+    return this;
+  }
+
+  /**
+   * Get token
+   * @return token
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,12 +95,13 @@ public class ConnectionCommandRequestModel   {
     }
     ConnectionCommandRequestModel connectionCommandRequest = (ConnectionCommandRequestModel) o;
     return Objects.equals(this.session, connectionCommandRequest.session) &&
-        Objects.equals(this.command, connectionCommandRequest.command);
+        Objects.equals(this.command, connectionCommandRequest.command) &&
+        Objects.equals(this.token, connectionCommandRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(session, command);
+    return Objects.hash(session, command, token);
   }
 
   @Override
@@ -86,6 +111,7 @@ public class ConnectionCommandRequestModel   {
     
     sb.append("    session: ").append(toIndentedString(session)).append("\n");
     sb.append("    command: ").append(toIndentedString(command)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

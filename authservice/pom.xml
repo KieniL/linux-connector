@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.kienast</groupId>
-	<artifactId>linuxconnector</artifactId>
+	<artifactId>authservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>authservice</name>
 	<description>authSerfvice for Linux Connector</description>

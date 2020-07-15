@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.kienast</groupId>
-	<artifactId>linuxconnector</artifactId>
+	<artifactId>connectorservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>linuxconnector</name>
-	<description>Linux Connector</description>
+	<name>connectorservice</name>
+	<description>connectorservice</description>
 
 	<properties>
         <java.version>11</java.version>
@@ -23,6 +23,16 @@
     </properties>
 
 	<dependencies>
+	
+		<!-- Used for WebTemplate -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		
 		<!-- Used for SSh Connection -->
 		<dependency>

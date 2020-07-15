@@ -9,38 +9,37 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * DestroyConnectionRequestModel
+ * ConnectionStoreIdRequestModel
  */
 
-public class DestroyConnectionRequestModel   {
-  @JsonProperty("session")
-  private String session;
+public class ConnectionStoreIdRequestModel   {
+  @JsonProperty("id")
+  private Integer id;
 
   @JsonProperty("token")
   private String token;
 
-  public DestroyConnectionRequestModel session(String session) {
-    this.session = session;
+  public ConnectionStoreIdRequestModel id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get session
-   * @return session
+   * Get id
+   * @return id
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
-  public String getSession() {
-    return session;
+  public Integer getId() {
+    return id;
   }
 
-  public void setSession(String session) {
-    this.session = session;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public DestroyConnectionRequestModel token(String token) {
+  public ConnectionStoreIdRequestModel token(String token) {
     this.token = token;
     return this;
   }
@@ -70,22 +69,22 @@ public class DestroyConnectionRequestModel   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DestroyConnectionRequestModel destroyConnectionRequest = (DestroyConnectionRequestModel) o;
-    return Objects.equals(this.session, destroyConnectionRequest.session) &&
-        Objects.equals(this.token, destroyConnectionRequest.token);
+    ConnectionStoreIdRequestModel connectionStoreIdRequest = (ConnectionStoreIdRequestModel) o;
+    return Objects.equals(this.id, connectionStoreIdRequest.id) &&
+        Objects.equals(this.token, connectionStoreIdRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(session, token);
+    return Objects.hash(id, token);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DestroyConnectionRequestModel {\n");
+    sb.append("class ConnectionStoreIdRequestModel {\n");
     
-    sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();

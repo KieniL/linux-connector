@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ConnectionStoreId'
+              $ref: '#/components/schemas/ConnectionStoreIdRequest'
       responses:
         200:
           description: Schemas
@@ -54,7 +54,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionCommandResponse'
-    delete:
+    head:
       summary: DestroyConnection
       operationId: destroyConnection
       tags:
@@ -74,12 +74,15 @@ paths:
                 $ref: '#/components/schemas/ConnectionStatus'            
 components:
   schemas:
-    ConnectionStoreId:
+    ConnectionStoreIdRequest:
       required:
         - store
+        - token
       properties:
         id:
           type: integer
+        token:
+          type: string
     ConnectionList:
       type: array
       items:
@@ -112,10 +115,13 @@ components:
       required:
         - channel
         - command
+        - token
       properties:
         session:
           type: string
         command:
+          type: string
+        token:
           type: string
     ConnectionCommandResponse:
       required:
@@ -126,8 +132,11 @@ components:
     DestroyConnectionRequest:
       required:
         - session
+        - token
       properties:
         session:
+          type: string
+        token:
           type: string
           
           

@@ -1,0 +1,22 @@
+version: "3"
+services:
+  authservice:
+    image: authservice
+    ports:
+      - "8082:8082"
+    networks:
+      - linux-connector
+ 
+  connectorservice:
+    image: connectorservice
+    environment:
+      - AUTH_URL=authservice:8082
+    depends_on:
+      - authservice
+    ports:
+      - "8081:8081"
+    networks:
+      - linux-connector
+
+networks:
+  linux-connector:

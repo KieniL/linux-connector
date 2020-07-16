@@ -14,8 +14,8 @@ FROM adoptopenjdk/openjdk13:x86_64-alpine-jre13u-nightly
 
 WORKDIR /APP
 
-COPY --from=builder /home/app/target/connectorservice.jar app.jar
+COPY --from=builder /home/app/target/authservice.jar app.jar
 
 ENTRYPOINT java -jar app.jar
 
-EXPOSE 8081
+EXPOSE 8082

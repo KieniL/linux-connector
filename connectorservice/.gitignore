@@ -58,3 +58,6 @@ build/
 .vscode/
 
 .project
+
+
+/clientopenapi/auth-api.yml

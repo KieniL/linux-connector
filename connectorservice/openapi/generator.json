@@ -1,9 +1,0 @@
-{
-	"configPackage":"com.kienast.connectorservice.config",
-	"apiPackage":"com.kienast.connectorservice.rest.api",
-	"modelPackage":"com.kienast.connectorservice.rest.api.model",
-	"interfaceOnly":true,
-	"java8":false,
-	"modelNameSuffix": "Model",
-	"hideGenerationTimestamp": true
-}

@@ -16,6 +16,9 @@ public class DestroyConnectionRequestModel   {
   @JsonProperty("session")
   private String session;
 
+  @JsonProperty("token")
+  private String token;
+
   public DestroyConnectionRequestModel session(String session) {
     this.session = session;
     return this;
@@ -37,6 +40,27 @@ public class DestroyConnectionRequestModel   {
     this.session = session;
   }
 
+  public DestroyConnectionRequestModel token(String token) {
+    this.token = token;
+    return this;
+  }
+
+  /**
+   * Get token
+   * @return token
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -47,12 +71,13 @@ public class DestroyConnectionRequestModel   {
       return false;
     }
     DestroyConnectionRequestModel destroyConnectionRequest = (DestroyConnectionRequestModel) o;
-    return Objects.equals(this.session, destroyConnectionRequest.session);
+    return Objects.equals(this.session, destroyConnectionRequest.session) &&
+        Objects.equals(this.token, destroyConnectionRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(session);
+    return Objects.hash(session, token);
   }
 
   @Override
@@ -61,6 +86,7 @@ public class DestroyConnectionRequestModel   {
     sb.append("class DestroyConnectionRequestModel {\n");
     
     sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

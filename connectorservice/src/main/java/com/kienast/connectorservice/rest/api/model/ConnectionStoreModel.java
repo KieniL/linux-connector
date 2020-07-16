@@ -25,6 +25,9 @@ public class ConnectionStoreModel   {
   @JsonProperty("password")
   private String password;
 
+  @JsonProperty("token")
+  private String token;
+
   public ConnectionStoreModel hostname(String hostname) {
     this.hostname = hostname;
     return this;
@@ -109,6 +112,27 @@ public class ConnectionStoreModel   {
     this.password = password;
   }
 
+  public ConnectionStoreModel token(String token) {
+    this.token = token;
+    return this;
+  }
+
+  /**
+   * Get token
+   * @return token
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -122,12 +146,13 @@ public class ConnectionStoreModel   {
     return Objects.equals(this.hostname, connectionStore.hostname) &&
         Objects.equals(this.port, connectionStore.port) &&
         Objects.equals(this.username, connectionStore.username) &&
-        Objects.equals(this.password, connectionStore.password);
+        Objects.equals(this.password, connectionStore.password) &&
+        Objects.equals(this.token, connectionStore.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostname, port, username, password);
+    return Objects.hash(hostname, port, username, password, token);
   }
 
   @Override
@@ -139,6 +164,7 @@ public class ConnectionStoreModel   {
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

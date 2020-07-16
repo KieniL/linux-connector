@@ -2,4 +2,5 @@ server:
   port: 8081
 spring:
   application:
-    name: jenkinstest
+    name: connectorservice
+authURL: ${AUTH_URL:test1234}

@@ -2,7 +2,6 @@ package com.kienast.connectorservice.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 

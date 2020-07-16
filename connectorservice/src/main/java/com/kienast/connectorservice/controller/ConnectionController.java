@@ -32,11 +32,8 @@ import com.kienast.connectorservice.rest.api.model.ConnectionCommandResponseMode
 import com.kienast.connectorservice.rest.api.model.ConnectionModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
-import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdModel;
-import com.kienast.connectorservice.rest.api.model.ConnectionStoreIdRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreStatusModel;
-import com.kienast.connectorservice.rest.api.model.ConnectionStoreStringModel;
 import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import com.kienast.connectorservice.service.ConnectionService;
 import com.kienast.connectorservice.service.ConnectionStoreService;

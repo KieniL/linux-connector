@@ -1,6 +1,5 @@
 package com.kienast.connectorservice.model;
 
-import java.math.BigDecimal;
 
 public class ConnectionStoreStatus {
 

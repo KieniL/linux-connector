@@ -46,7 +46,7 @@ class ConnectionControllerTest {
 	
 
 	@MockBean
-	private ConnectionRepository connectionRepository;
+	private ConnectionRepository connectionRepositor;
 	
 	private List<Connection> connections;
 
@@ -55,7 +55,7 @@ class ConnectionControllerTest {
 		
 		connections = new ArrayList<Connection>();
 		
-		connections.add(new Connection("10.0.0.0", 22, "testuser", "testpw", "session1"));
+		connections.add(new Connection("1", "10.0.0.0", 22, "testuser", "testpw", "session1"));
 		
 		//MockService
 		Mockito.when (connectionService.getActiveConnections()).thenReturn (connections);
@@ -74,7 +74,7 @@ class ConnectionControllerTest {
 		
 		String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiYXV0aCI6IlJPTEVfU0VSVklDRSIsImlhdCI6MTU5NDg4MDc0OCwiZXhwIjoxNjI2NDE2NzQ4fQ.UQkT0tL_YqXizGQ1LtVj8emzLg081Bvbi63mIw63yQho0CR1sToG2Ac33IQacYQv1rG6cQnKQgNC0uzTPqBe4w";
 		//MockService
-		CreateConnectionCommand command = new CreateConnectionCommand(1);
+		CreateConnectionCommand command = new CreateConnectionCommand("1");
 		ConnectionStatus status = null;
 		Mockito.when (connectionService.createConnection(command)).thenReturn (status);
 		

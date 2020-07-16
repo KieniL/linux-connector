@@ -80,7 +80,7 @@ components:
         - token
       properties:
         id:
-          type: integer
+          type: string
         token:
           type: string
     ConnectionList:
@@ -89,12 +89,15 @@ components:
         $ref: '#/components/schemas/Connection'
     Connection:
       required:
+        - id
         - hostname
         - port
         - username
         - password
         - session
       properties:
+        id:
+          type: string
         hostname:
           type: string
         port:
@@ -113,11 +116,11 @@ components:
           type: integer
     ConnectionCommandRequest:
       required:
-        - channel
+        - storeId
         - command
         - token
       properties:
-        session:
+        storeId:
           type: string
         command:
           type: string
@@ -131,10 +134,10 @@ components:
           type: string
     DestroyConnectionRequest:
       required:
-        - session
+        - storeId
         - token
       properties:
-        session:
+        storeId:
           type: string
         token:
           type: string

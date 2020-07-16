@@ -2,13 +2,13 @@ package com.kienast.connectorservice.command;
 
 
 public class UpdateConnectionStoreCommand {
-	private int storeId;
+	private String storeId;
 	private String hostname;
 	private int port;
 	private String username;
 	private String password;
 
-	public UpdateConnectionStoreCommand(int storeId, String hostname, int port, String username, String password) {
+	public UpdateConnectionStoreCommand(String storeId, String hostname, int port, String username, String password) {
 		this.storeId = storeId;
 		this.hostname = hostname;
 		this.port = port;
@@ -16,7 +16,7 @@ public class UpdateConnectionStoreCommand {
 		this.password =  password;	
 	}
 
-	public int getStoreId() {
+	public String getStoreId() {
 		return storeId;
 	}
 	

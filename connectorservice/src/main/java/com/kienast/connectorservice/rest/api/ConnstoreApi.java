@@ -64,6 +64,6 @@ public interface ConnstoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(@ApiParam(value = "the id in the list of the store",required=true) @PathVariable("storeId") Integer storeId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(@ApiParam(value = "the id of the stored Connection",required=true) @PathVariable("storeId") String storeId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 }

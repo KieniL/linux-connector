@@ -1,6 +1,7 @@
 package com.kienast.connectorservice.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.kienast.connectorservice.command.DestroyConnectionStoreCommand;
 import com.kienast.connectorservice.command.UpdateConnectionStoreCommand;
@@ -17,5 +18,5 @@ public interface ConnectionStoreRepository {
 	
 	ConnectionStoreStatus delete(DestroyConnectionStoreCommand connStore);
 	
-	ConnectionStore findByString(int storeId);
+	Optional<ConnectionStore> findByString(String storeId);
 }

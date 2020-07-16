@@ -13,6 +13,9 @@ import javax.validation.constraints.*;
  */
 
 public class ConnectionModel   {
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("hostname")
   private String hostname;
 
@@ -27,6 +30,27 @@ public class ConnectionModel   {
 
   @JsonProperty("session")
   private String session;
+
+  public ConnectionModel id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public ConnectionModel hostname(String hostname) {
     this.hostname = hostname;
@@ -143,7 +167,8 @@ public class ConnectionModel   {
       return false;
     }
     ConnectionModel connection = (ConnectionModel) o;
-    return Objects.equals(this.hostname, connection.hostname) &&
+    return Objects.equals(this.id, connection.id) &&
+        Objects.equals(this.hostname, connection.hostname) &&
         Objects.equals(this.port, connection.port) &&
         Objects.equals(this.username, connection.username) &&
         Objects.equals(this.password, connection.password) &&
@@ -152,7 +177,7 @@ public class ConnectionModel   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostname, port, username, password, session);
+    return Objects.hash(id, hostname, port, username, password, session);
   }
 
   @Override
@@ -160,6 +185,7 @@ public class ConnectionModel   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionModel {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");

@@ -2,15 +2,15 @@ package com.kienast.connectorservice.command;
 
 
 public class DestroyConnectionCommand {
-	private String session;
+	private String storeId;
 
-	public DestroyConnectionCommand(String session) {
-		this.session = session;
+	public DestroyConnectionCommand(String storeId) {
+		this.storeId = storeId;
 	}
 
 
-	public String getSession() {
-		return session;
+	public String getStoreId() {
+		return storeId;
 	}
 	
 }

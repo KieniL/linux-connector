@@ -9,27 +9,30 @@ Otherwise there is a unknownHostException
 
 Set environment variable on host machine (variableName = AUTH_URL) for the authservice if not used with docker
 
+# Containerization
+Run dockerbuild.sh to build the container images
+Run docker-compose up -d to create the containers based on images
 
 ## Connections EndPoints
 /connection 
 
 GET --> Get Connections
-POST --> Create Connection. Body: Id of the List in Stored Connection, token
-DELETE --> Delete Connection. Body: Session (toString)), token
-PUT --> Add Command. Body: Session (toString)), command, token
+POST --> Create Connection. Body: Id of the Stored Connection, token
+HEAD --> Delete Connection. Body: Id of the Connection, token
+PUT --> Add Command. Body: Id of the Connection, command, token
 
 
 ## ConnStore Endpoints
 /connstore
 
 GET --> Get Stored Connections
-POST --> Add Stored Connection. Body: hostname, port, username, password, token
-DELETE --> Delete Connection. Body: hostname, port, username, password, token
+POST --> Add Stored Connection. Body: id, hostname, port, username, password, token
+HEAD --> Delete Stored Connection. Body: id, hostname, port, username, password, token
 
 
 /connstore/STOREID
 
-POST --> Update Stored Connection. Path: storeId (in List), Body: hostname, port, username, password
+POST --> Update Stored Connection. Path: storeId (in List), Body: id, hostname, port, username, password
 
 
 ## Authentication EndPoints

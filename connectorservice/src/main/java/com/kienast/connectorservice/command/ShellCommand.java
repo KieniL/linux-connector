@@ -2,11 +2,11 @@ package com.kienast.connectorservice.command;
 
 
 public class ShellCommand {
-	private String session;
+	private String storeId;
 	private String command;
 
-	public ShellCommand(String session, String command) {
-		this.session = session;
+	public ShellCommand(String storeId, String command) {
+		this.storeId = storeId;
 		this.command = command;
 	}
 
@@ -15,7 +15,7 @@ public class ShellCommand {
 		return command;
 	}
 	
-	public String getSession() {
-		return session;
+	public String getStoreId() {
+		return storeId;
 	}
 }

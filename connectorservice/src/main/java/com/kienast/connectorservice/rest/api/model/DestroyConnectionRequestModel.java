@@ -13,31 +13,31 @@ import javax.validation.constraints.*;
  */
 
 public class DestroyConnectionRequestModel   {
-  @JsonProperty("session")
-  private String session;
+  @JsonProperty("storeId")
+  private String storeId;
 
   @JsonProperty("token")
   private String token;
 
-  public DestroyConnectionRequestModel session(String session) {
-    this.session = session;
+  public DestroyConnectionRequestModel storeId(String storeId) {
+    this.storeId = storeId;
     return this;
   }
 
   /**
-   * Get session
-   * @return session
+   * Get storeId
+   * @return storeId
   */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
 
-  public String getSession() {
-    return session;
+  public String getStoreId() {
+    return storeId;
   }
 
-  public void setSession(String session) {
-    this.session = session;
+  public void setStoreId(String storeId) {
+    this.storeId = storeId;
   }
 
   public DestroyConnectionRequestModel token(String token) {
@@ -71,13 +71,13 @@ public class DestroyConnectionRequestModel   {
       return false;
     }
     DestroyConnectionRequestModel destroyConnectionRequest = (DestroyConnectionRequestModel) o;
-    return Objects.equals(this.session, destroyConnectionRequest.session) &&
+    return Objects.equals(this.storeId, destroyConnectionRequest.storeId) &&
         Objects.equals(this.token, destroyConnectionRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(session, token);
+    return Objects.hash(storeId, token);
   }
 
   @Override
@@ -85,7 +85,7 @@ public class DestroyConnectionRequestModel   {
     StringBuilder sb = new StringBuilder();
     sb.append("class DestroyConnectionRequestModel {\n");
     
-    sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();

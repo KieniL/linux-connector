@@ -2,6 +2,7 @@ package com.kienast.connectorservice.command;
 
 
 public class CreateConnectionStoreCommand {
+
 	private String hostname;
 	private int port;
 	private String username;
@@ -29,6 +30,7 @@ public class CreateConnectionStoreCommand {
 	public String getPassword() {
 		return password;
 	}
+
 
 	
 }

@@ -2,20 +2,20 @@ package com.kienast.connectorservice.model;
 
 public class ConnectionRequest {
 
-	private int storeId;
+	private String storeId;
 
 	
 
-	public ConnectionRequest(int storeId) {
+	public ConnectionRequest(String storeId) {
 		this.storeId = storeId;
 
 	}
 
-	public int getStoreId() {
+	public String getStoreId() {
 		return storeId;
 	}
 
-	public void getStoreId(int storeId) {
+	public void setStoreId(String storeId) {
 		this.storeId = storeId;
 	}
 

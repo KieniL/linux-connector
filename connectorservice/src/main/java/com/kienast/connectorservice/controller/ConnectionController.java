@@ -55,7 +55,7 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 	@Override
 	public ResponseEntity<List<ConnectionModel>> getActiveConnections() {
 		List<Connection> activeConnections = connectionService.getActiveConnections();
-		
+
 		List<ConnectionModel> response = activeConnections.stream().map(ConnectionAdapter::new)
 				.map(ConnectionAdapter::createJson).collect(Collectors.toList());
 		
@@ -87,7 +87,7 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		}
 		
 		
-		DestroyConnectionCommand command = new DestroyConnectionCommand(destroyConnectionRequestModel.getSession());
+		DestroyConnectionCommand command = new DestroyConnectionCommand(destroyConnectionRequestModel.getStoreId());
 		ConnectionStatus connectionStatus = connectionService.destroyConnection(command);
 		ConnectionStatusModel response = new ConnectionStatusAdapter(connectionStatus).createJson();
 		return ResponseEntity.ok(response);
@@ -104,8 +104,7 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		}
 		
 		
-		
-		ShellCommand command = new ShellCommand(connectionCommandRequestModel.getSession(),
+		ShellCommand command = new ShellCommand(connectionCommandRequestModel.getStoreId(),
 				connectionCommandRequestModel.getCommand());
 		
 		String responseText = connectionService.addCommand(command);
@@ -138,8 +137,8 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		
 		
 		CreateConnectionStoreCommand command = new CreateConnectionStoreCommand(connectionStoreModel.getHostname(),
-				connectionStoreModel.getPort(), connectionStoreModel.getUsername(),
-				connectionStoreModel.getPassword());
+				connectionStoreModel.getPort(),
+				connectionStoreModel.getUsername(),connectionStoreModel.getPassword());
 		ConnectionStoreStatus connStoreStatus = connectionStoreService.addStoredConnection(command);
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);
@@ -165,10 +164,11 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 	}
 
 
+
 	@Override
-	public ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(Integer storeId,
+	public ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(String storeId,
 			@Valid ConnectionStoreModel connectionStoreModel) {
-		
+
 		if (tokenService.validateToken(connectionStoreModel.getToken()) == null) {
 			throw(new NotAuthorizedException(connectionStoreModel.getToken()));
 		}

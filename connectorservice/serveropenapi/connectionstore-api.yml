@@ -82,9 +82,9 @@ components:
       name: storeId
       in: path
       required: true
-      description: the id in the list of the store
+      description: the id of the stored Connection
       schema:
-        type: integer
+        type: string
   schemas:
     ConnectionStoreStatus:
       required:
@@ -98,12 +98,15 @@ components:
         $ref: '#/components/schemas/ConnectionStore'
     ConnectionStore:
       required:
+        - id
         - hostname
         - port
         - username
         - password
         - token
       properties:
+        id:
+          type: string
         hostname:
           type: string
         port:

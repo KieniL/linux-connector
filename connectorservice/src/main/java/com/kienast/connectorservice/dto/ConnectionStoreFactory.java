@@ -9,8 +9,7 @@ public final class ConnectionStoreFactory {
 	}
 
 	public static ConnectionStore createNew(CreateConnectionStoreCommand command) {
-		return new ConnectionStore(
-				command.getHostname(),
+		return new ConnectionStore(command.getHostname(),
 				command.getPort(),
 				command.getUsername(),
 				command.getPassword());

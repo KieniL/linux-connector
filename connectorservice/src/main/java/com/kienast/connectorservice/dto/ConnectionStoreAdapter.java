@@ -13,6 +13,7 @@ public class ConnectionStoreAdapter {
 
 	public ConnectionStoreModel createJson() {
 		return new ConnectionStoreModel()
+				.id(connectionStore.getId())
 				.hostname(connectionStore.getHostname())
 				.port(connectionStore.getPort())
 				.username(connectionStore.getUsername())

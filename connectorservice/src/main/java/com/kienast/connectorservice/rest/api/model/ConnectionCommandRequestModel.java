@@ -2,7 +2,10 @@ package com.kienast.connectorservice.rest.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
@@ -10,8 +13,8 @@ import javax.validation.constraints.*;
  */
 
 public class ConnectionCommandRequestModel   {
-  @JsonProperty("session")
-  private String session;
+  @JsonProperty("storeId")
+  private String storeId;
 
   @JsonProperty("command")
   private String command;
@@ -19,24 +22,25 @@ public class ConnectionCommandRequestModel   {
   @JsonProperty("token")
   private String token;
 
-  public ConnectionCommandRequestModel session(String session) {
-    this.session = session;
+  public ConnectionCommandRequestModel storeId(String storeId) {
+    this.storeId = storeId;
     return this;
   }
 
   /**
-   * Get session
-   * @return session
+   * Get storeId
+   * @return storeId
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
-  public String getSession() {
-    return session;
+  public String getStoreId() {
+    return storeId;
   }
 
-  public void setSession(String session) {
-    this.session = session;
+  public void setStoreId(String storeId) {
+    this.storeId = storeId;
   }
 
   public ConnectionCommandRequestModel command(String command) {
@@ -91,14 +95,14 @@ public class ConnectionCommandRequestModel   {
       return false;
     }
     ConnectionCommandRequestModel connectionCommandRequest = (ConnectionCommandRequestModel) o;
-    return Objects.equals(this.session, connectionCommandRequest.session) &&
+    return Objects.equals(this.storeId, connectionCommandRequest.storeId) &&
         Objects.equals(this.command, connectionCommandRequest.command) &&
         Objects.equals(this.token, connectionCommandRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(session, command, token);
+    return Objects.hash(storeId, command, token);
   }
 
   @Override
@@ -106,7 +110,7 @@ public class ConnectionCommandRequestModel   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionCommandRequestModel {\n");
     
-    sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
     sb.append("    command: ").append(toIndentedString(command)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");

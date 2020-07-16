@@ -2,13 +2,13 @@ package com.kienast.connectorservice.command;
 
 
 public class CreateConnectionCommand {
-	private int storeId;
+	private String storeId;
 	
-	public CreateConnectionCommand(int storeId) {
+	public CreateConnectionCommand(String storeId) {
 		this.storeId = storeId;
 	}
 
-	public int getStoreId() {
+	public String getStoreId() {
 		return storeId;
 	}
 

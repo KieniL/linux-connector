@@ -1,0 +1,49 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Auth Service
+servers:
+  - url: api
+paths:
+  /auth:
+    post:
+      summary: Authenticate
+      operationId: authenticate
+      tags:
+        -  auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+components:
+  schemas:
+    Token:
+      required:
+        - token
+        - userid
+      properties:
+        token:
+          type: string
+        userid:
+          type: string
+    Login:
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 1
+          maxLength: 40

@@ -12,7 +12,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.kienast.apiservice.dto.TokenAdapter;
-import com.kienast.apiservice.model.Login;
 import com.kienast.apiservice.model.Token;
 import com.kienast.apiservice.rest.api.AuthApi;
 import com.kienast.apiservice.rest.api.model.LoginModel;
@@ -28,13 +27,9 @@ public class AuthController implements AuthApi {
 	
 	@Value("${authURL}")
 	private String authURL;
-	
-	@Value("${connURL}")
-	private String connURL;
 
 	@Override
 	public ResponseEntity<TokenModel> authenticate(@Valid LoginModel loginModel) {
-		Login login = new Login(loginModel.getEmail(), loginModel.getPassword());
 		Token tokenResponse = null;
 		
 		try {
@@ -42,7 +37,7 @@ public class AuthController implements AuthApi {
 					.post() //RequestMethod
 					.uri(authURL+"/auth")
 					.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-					.body(BodyInserters.fromObject(login))
+					.body(BodyInserters.fromObject(loginModel))
 					.retrieve() //run command
 					.bodyToMono(Token.class) //convert Response
 					.block(); //do as Synchronous call

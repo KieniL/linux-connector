@@ -11,6 +11,6 @@ public class RootController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public String index(){
-		return "<h1>Hello at my Auth Application</h1>";
+		return "<h1>Hello at my API Application</h1>";
 	}
 }

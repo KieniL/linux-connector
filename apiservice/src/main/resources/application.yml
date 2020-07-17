@@ -3,3 +3,5 @@ server:
 spring:
   application:
     name: apiservice
+authURL: ${AUTH_URL:test1234}
+connURL : ${CONN_URL:test1234}

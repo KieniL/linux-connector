@@ -17,7 +17,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 		http.csrf().disable()
 		.cors().and()
 		.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/").permitAll();
+		.antMatchers(HttpMethod.GET, "/").permitAll()
+		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers(HttpMethod.PUT, "/auth").permitAll()
+		.antMatchers(HttpMethod.GET, "/connstore").permitAll()
+		.antMatchers(HttpMethod.POST, "/connstore").permitAll()
+		.antMatchers(HttpMethod.HEAD, "/connstore").permitAll()
+		.antMatchers(HttpMethod.PUT, "/connection").permitAll()
+		.antMatchers(HttpMethod.POST, "/connstore/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/connection").permitAll()
+		.antMatchers(HttpMethod.POST, "/connection").permitAll()
+		.antMatchers(HttpMethod.HEAD, "/connection").permitAll()
+		.antMatchers(HttpMethod.PUT, "/connection").permitAll();
+		
 
 	}
 }

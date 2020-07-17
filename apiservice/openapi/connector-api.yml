@@ -1,0 +1,145 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Connector Service
+servers:
+  - url: api/connector
+paths:
+  /connection:
+    get:
+      summary: GetActiveConnections
+      operationId: getActiveConnections
+      tags:
+        -  connection
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionList'
+    post:
+      summary: CreateConnection
+      operationId: createConnection
+      tags:
+        -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionRequest'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'
+    put:
+      summary: AddCommand
+      operationId: addCommand
+      tags:
+        -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionCommandRequest'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionCommandResponse'
+    head:
+      summary: DestroyConnection
+      operationId: destroyConnection
+      tags:
+        -  connection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestroyConnectionRequest'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatus'            
+components:
+  schemas:
+    ConnectionRequest:
+      required:
+        - store
+        - token
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+    ConnectionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Connection'
+    Connection:
+      required:
+        - id
+        - hostname
+        - port
+        - username
+        - password
+        - session
+      properties:
+        id:
+          type: string
+        hostname:
+          type: string
+        port:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        session:
+          type: string
+    ConnectionStatus:
+      required:
+        - status
+      properties:
+        statuscode:
+          type: integer
+    ConnectionCommandRequest:
+      required:
+        - storeId
+        - command
+        - token
+      properties:
+        storeId:
+          type: string
+        command:
+          type: string
+        token:
+          type: string
+    ConnectionCommandResponse:
+      required:
+        - response
+      properties:
+        response:
+          type: string
+    DestroyConnectionRequest:
+      required:
+        - storeId
+        - token
+      properties:
+        storeId:
+          type: string
+        token:
+          type: string
+          
+          

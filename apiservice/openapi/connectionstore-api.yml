@@ -1,0 +1,121 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Connection Store Service
+servers:
+  - url: api/connectionstore
+paths:
+  /connstore:
+    get:
+      summary: GetConnectionStores
+      operationId: getConnectionStores
+      tags:
+        -  connstore
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreList'
+    post:
+      summary: AddConnectionStore
+      operationId: addConnectionStore
+      tags:
+        -  connstore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreStatus'
+    head:
+      summary: DeleteConnectionStore
+      operationId: deleteConnectionStore
+      tags:
+        -  connstore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreStatus'    
+  /connstore/{storeId}:
+    post:
+      summary: UpdateConnectionStore
+      operationId: updateConnectionStore
+      tags:
+        -  connstore
+      parameters:
+        - $ref: "#/components/parameters/storeId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionStore'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStoreStatus'
+        
+components:
+  parameters:
+    storeId:
+      name: storeId
+      in: path
+      required: true
+      description: the id of the stored Connection
+      schema:
+        type: string
+  schemas:
+    ConnectionStoreStatus:
+      required:
+        - status
+      properties:
+        status:
+          type: integer
+    ConnectionStoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConnectionStore'
+    ConnectionStore:
+      required:
+        - id
+        - hostname
+        - port
+        - username
+        - password
+        - token
+      properties:
+        id:
+          type: string
+        hostname:
+          type: string
+        port:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        token:
+          type: string
+
+          

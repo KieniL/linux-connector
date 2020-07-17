@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,7 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
         int status = 200;
 		try {
 			
-			ConnectionStore store = connectionStoreRepository.findByString(connectionRequest.getStoreId());
+			ConnectionStore store = connectionStoreRepository.findByString(connectionRequest.getStoreId()).get();
 			Session session;
 			JSch jsch = new JSch();
 			jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
@@ -46,7 +47,8 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			
 
 			
-			connections.add(new Connection(store.getHostname(),
+			connections.add(new Connection(store.getId(),
+					store.getHostname(),
 					store.getPort(),
 					store.getUsername(),
 					store.getPassword(),
@@ -57,6 +59,7 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			
 		} catch (Exception e) {
 			System.err.println("Error: " + e);
+			return new ConnectionStatus(500);
 		}
 		
 		return new ConnectionStatus(status);
@@ -67,8 +70,17 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 		Session session = null;
 		Connection connection = null;
 		
+		Connection conn = null;
+		
+		try {
+			conn = findByString(command.getStoreId()).get();
+		}catch(java.util.NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			return new ConnectionStatus(500);
+		}
+		
 		for(Session s : sessions) {
-			if(s.toString().equals(command.getSession())) {
+			if(s.toString().equals(conn.getSession())) {
 				session = s;
 			}
 		}
@@ -79,7 +91,7 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 		
 		
 		for(Connection c : connections) {
-			if(c.getSession().equals(command.getSession())) {
+			if(c.getSession().equals(conn.getSession())) {
 				connection = c;
 			}
 		}
@@ -100,8 +112,18 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 		String response = "";
 		Session session = null;
 		
+		Connection connection = null;
+		
+		try {
+			connection = findByString(command.getStoreId()).get();
+		}catch(java.util.NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+		
 		for(Session s : sessions) {
-			if(s.toString().equals(command.getSession())) {
+			if(s.toString().equals(connection.getSession())) {
 				session = s;
 			}
 		}
@@ -138,6 +160,10 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 
 		channelExec.disconnect();
 		return response;
+	}
+	
+	private Optional<Connection> findByString(String storeId) {
+		return connections.stream().filter(item -> item.getId().equals(storeId)).findFirst();
 	}
 
 }

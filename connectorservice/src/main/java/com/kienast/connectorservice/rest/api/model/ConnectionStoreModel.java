@@ -13,6 +13,9 @@ import javax.validation.constraints.*;
  */
 
 public class ConnectionStoreModel   {
+  @JsonProperty("id")
+  private String id;
+
   @JsonProperty("hostname")
   private String hostname;
 
@@ -27,6 +30,27 @@ public class ConnectionStoreModel   {
 
   @JsonProperty("token")
   private String token;
+
+  public ConnectionStoreModel id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public ConnectionStoreModel hostname(String hostname) {
     this.hostname = hostname;
@@ -143,7 +167,8 @@ public class ConnectionStoreModel   {
       return false;
     }
     ConnectionStoreModel connectionStore = (ConnectionStoreModel) o;
-    return Objects.equals(this.hostname, connectionStore.hostname) &&
+    return Objects.equals(this.id, connectionStore.id) &&
+        Objects.equals(this.hostname, connectionStore.hostname) &&
         Objects.equals(this.port, connectionStore.port) &&
         Objects.equals(this.username, connectionStore.username) &&
         Objects.equals(this.password, connectionStore.password) &&
@@ -152,7 +177,7 @@ public class ConnectionStoreModel   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hostname, port, username, password, token);
+    return Objects.hash(id, hostname, port, username, password, token);
   }
 
   @Override
@@ -160,6 +185,7 @@ public class ConnectionStoreModel   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionStoreModel {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");

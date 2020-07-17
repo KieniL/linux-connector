@@ -13,6 +13,7 @@ public class ConnectionAdapter {
 
 	public ConnectionModel createJson() {
 		return new ConnectionModel()
+				.id(connection.getId())
 				.hostname(connection.getHostname())
 				.port(connection.getPort())
 				.username(connection.getUsername())

@@ -7,6 +7,7 @@ package com.kienast.connectorservice.rest.api;
 
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreStatusModel;
+import com.kienast.connectorservice.rest.api.model.DeleteConnectionStoreRequestModel;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -45,7 +46,7 @@ public interface ConnstoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.HEAD)
-    ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody DeleteConnectionStoreRequestModel deleteConnectionStoreRequestModel);
 
 
     @ApiOperation(value = "GetConnectionStores", nickname = "getConnectionStores", notes = "", response = ConnectionStoreModel.class, responseContainer = "List", tags={ "connstore", })
@@ -64,6 +65,6 @@ public interface ConnstoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(@ApiParam(value = "the id in the list of the store",required=true) @PathVariable("storeId") Integer storeId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> updateConnectionStore(@ApiParam(value = "the id of the stored Connection",required=true) @PathVariable("storeId") String storeId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 }

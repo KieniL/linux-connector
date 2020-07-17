@@ -1,7 +1,5 @@
 package com.kienast.authservice.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -10,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,7 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.kienast.authservice.command.LoginUserCommand;
-import com.kienast.authservice.dto.TokenAdapter;
 import com.kienast.authservice.model.User;
 import com.kienast.authservice.repository.UserRepository;
 import com.kienast.authservice.service.TokenService;

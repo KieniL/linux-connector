@@ -1,6 +1,8 @@
 package com.kienast.connectorservice.model;
 
 public class Connection {
+	
+	private String id;
 
 	private String hostname;
 
@@ -14,7 +16,8 @@ public class Connection {
 	
 	
 
-	public Connection(String hostname, int port, String username, String password, String session) {
+	public Connection(String id, String hostname, int port, String username, String password, String session) {
+		this.id = id;
 		this.hostname = hostname;
 		this.port = port;
 		this.username = username;
@@ -60,6 +63,14 @@ public class Connection {
 
 	public void setSession(String session) {
 		this.session = session;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 

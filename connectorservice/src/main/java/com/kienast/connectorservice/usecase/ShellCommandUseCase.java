@@ -1,8 +1,6 @@
 package com.kienast.connectorservice.usecase;
 
 import com.kienast.connectorservice.command.ShellCommand;
-import com.kienast.connectorservice.model.Connection;
-import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.repository.ConnectionRepository;
 
 public class ShellCommandUseCase {

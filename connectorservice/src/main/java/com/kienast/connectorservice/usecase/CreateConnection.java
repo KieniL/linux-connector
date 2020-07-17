@@ -2,7 +2,6 @@ package com.kienast.connectorservice.usecase;
 
 import com.kienast.connectorservice.command.CreateConnectionCommand;
 import com.kienast.connectorservice.dto.ConnectionFactory;
-import com.kienast.connectorservice.model.Connection;
 import com.kienast.connectorservice.model.ConnectionRequest;
 import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.repository.ConnectionRepository;

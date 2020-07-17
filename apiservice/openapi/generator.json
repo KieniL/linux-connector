@@ -1,0 +1,9 @@
+{
+	"configPackage":"com.kienast.apiservice.config",
+	"apiPackage":"com.kienast.apiservice.rest.api",
+	"modelPackage":"com.kienast.apiservice.rest.api.model",
+	"interfaceOnly":true,
+	"java8":false,
+	"modelNameSuffix": "Model",
+	"hideGenerationTimestamp": true
+}

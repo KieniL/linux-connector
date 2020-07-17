@@ -20,6 +20,7 @@ Run dockerbuild.sh to build the container images
 Run docker-compose up -d to create the containers based on images
 
 ## API Endpoints
+All Endpoints from the different services (same endpoints, same method and same requestbody)
 
 ## Connections EndPoints
 /connection 

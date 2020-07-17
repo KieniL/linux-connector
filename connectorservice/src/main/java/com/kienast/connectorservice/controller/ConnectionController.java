@@ -34,6 +34,7 @@ import com.kienast.connectorservice.rest.api.model.ConnectionRequestModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStatusModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreModel;
 import com.kienast.connectorservice.rest.api.model.ConnectionStoreStatusModel;
+import com.kienast.connectorservice.rest.api.model.DeleteConnectionStoreRequestModel;
 import com.kienast.connectorservice.rest.api.model.DestroyConnectionRequestModel;
 import com.kienast.connectorservice.service.ConnectionService;
 import com.kienast.connectorservice.service.ConnectionStoreService;
@@ -147,17 +148,16 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 
 
 
+		
+	
 	@Override
 	public ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(
-			@Valid ConnectionStoreModel connectionStoreModel) {
-		
-		if (tokenService.validateToken(connectionStoreModel.getToken()) == null) {
-			throw(new NotAuthorizedException(connectionStoreModel.getToken()));
+			@Valid DeleteConnectionStoreRequestModel deleteConnectionStoreRequestModel) {
+		if (tokenService.validateToken(deleteConnectionStoreRequestModel.getToken()) == null) {
+			throw(new NotAuthorizedException(deleteConnectionStoreRequestModel.getToken()));
 		}
 		
-		
-		DestroyConnectionStoreCommand command = new DestroyConnectionStoreCommand(connectionStoreModel.getHostname(),
-				connectionStoreModel.getPort(), connectionStoreModel.getUsername(), connectionStoreModel.getPassword());
+		DestroyConnectionStoreCommand command = new DestroyConnectionStoreCommand(deleteConnectionStoreRequestModel.getStoreId());
 		ConnectionStoreStatus connStoreStatus = connectionStoreService.deleteStoredConnection(command);
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);
@@ -180,6 +180,9 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);
 	}
+
+
+
 
 
 

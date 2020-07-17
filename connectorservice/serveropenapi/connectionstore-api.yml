@@ -46,7 +46,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ConnectionStore'
+              $ref: '#/components/schemas/DeleteConnectionStoreRequest'
       responses:
         200:
           description: Schemas
@@ -86,6 +86,15 @@ components:
       schema:
         type: string
   schemas:
+    DeleteConnectionStoreRequest:
+      required:
+        - token
+        - storeId
+      properties:
+        token:
+          type: string
+        storeId:
+          type: string
     ConnectionStoreStatus:
       required:
         - status

@@ -2,33 +2,16 @@ package com.kienast.connectorservice.command;
 
 
 public class DestroyConnectionStoreCommand {
-	private String hostname;
-	private int port;
-	private String username;
-	private String password;
+	private String storeId;
 
-	public DestroyConnectionStoreCommand(String hostname, int port, String username, String password) {
-		this.hostname = hostname;
-		this.port = port;
-		this.username = username;
-		this.password =  password;	
+	public DestroyConnectionStoreCommand(String storeId) {
+		this.storeId = storeId;
 	}
 
-	public String getHostname() {
-		return hostname;
+	public String getStoreId() {
+		return storeId;
 	}
 
-	public int getPort() {
-		return port;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
 
 
 }

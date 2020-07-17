@@ -19,6 +19,7 @@ import com.kienast.apiservice.rest.api.model.ConnectionCommandResponseModel;
 import com.kienast.apiservice.rest.api.model.ConnectionModel;
 import com.kienast.apiservice.rest.api.model.ConnectionStoreModel;
 import com.kienast.apiservice.rest.api.model.ConnectionStoreStatusModel;
+import com.kienast.apiservice.rest.api.model.DeleteConnectionStoreRequestModel;
 
 @RestController
 public class ConnStoreController implements ConnstoreApi {
@@ -50,15 +51,16 @@ public class ConnStoreController implements ConnstoreApi {
 		return ResponseEntity.badRequest().body(null);
 	}
 
+	
 	@Override
 	public ResponseEntity<ConnectionStoreStatusModel> deleteConnectionStore(
-			@Valid ConnectionStoreModel connectionStoreModel) {
+			@Valid DeleteConnectionStoreRequestModel deleteConnectionStoreRequestModel) {
 		ConnectionStoreStatusModel model =
 				((RequestBodySpec) webClientBuilder.build()
 					.head() //RequestMethod
 					.uri(connURL+"/connstore")
 					.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-					.body(BodyInserters.fromObject(connectionStoreModel))
+					.body(BodyInserters.fromObject(deleteConnectionStoreRequestModel))
 					.retrieve() //run command
 					.bodyToMono(ConnectionStoreStatusModel.class) //convert Response
 					.block(); //do as Synchronous call
@@ -108,5 +110,7 @@ public class ConnStoreController implements ConnstoreApi {
 		
 		return ResponseEntity.badRequest().body(null);
 	}
+
+
 
 }

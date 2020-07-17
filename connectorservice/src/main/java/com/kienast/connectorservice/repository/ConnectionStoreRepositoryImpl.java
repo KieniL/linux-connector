@@ -52,13 +52,12 @@ public class ConnectionStoreRepositoryImpl implements ConnectionStoreRepository 
 	@Override
 	public ConnectionStoreStatus delete(DestroyConnectionStoreCommand command) {
 		ConnectionStore store = null;
-		for (ConnectionStore c : connections) {
-			if(c.getHostname().equals(command.getHostname()) && 
-					c.getPassword().equals(command.getPassword()) &&
-					c.getPort() == command.getPort() &&
-					c.getUsername().equals(command.getUsername())) {
-				store = c;
-			}
+		
+		try {
+			store = findByString(command.getStoreId()).get();
+		}catch(java.util.NoSuchElementException e) {
+			System.out.println(e.getMessage());
+			return new ConnectionStoreStatus(500);
 		}
 		
 		connections.remove(store);

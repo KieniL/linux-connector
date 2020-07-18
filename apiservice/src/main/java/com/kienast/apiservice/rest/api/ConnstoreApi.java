@@ -36,7 +36,7 @@ public interface ConnstoreApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ConnectionStoreStatusModel> addConnectionStore(@ApiParam(value = "" ,required=true )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
+    ResponseEntity<ConnectionStoreStatusModel> addConnectionStore(@ApiParam(value = ""  )  @Valid @RequestBody ConnectionStoreModel connectionStoreModel);
 
 
     @ApiOperation(value = "DeleteConnectionStore", nickname = "deleteConnectionStore", notes = "", response = ConnectionStoreStatusModel.class, tags={ "connstore", })

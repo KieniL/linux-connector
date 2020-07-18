@@ -17,6 +17,6 @@ public class ConnectionStoreAdapter {
 				.hostname(connectionStore.getHostname())
 				.port(connectionStore.getPort())
 				.username(connectionStore.getUsername())
-				.password(connectionStore.getPassword());
+				.sshkey(connectionStore.getSshkey());
 	}
 }

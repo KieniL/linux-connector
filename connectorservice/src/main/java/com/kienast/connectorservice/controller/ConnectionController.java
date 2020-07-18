@@ -176,10 +176,12 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		
 		UpdateConnectionStoreCommand command = new UpdateConnectionStoreCommand(storeId, connectionStoreModel.getHostname(),
 				connectionStoreModel.getPort(), connectionStoreModel.getUsername(), connectionStoreModel.getPassword());
+		
 		ConnectionStoreStatus connStoreStatus = connectionStoreService.updateStoredConnection(command);
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);
 	}
+
 
 
 

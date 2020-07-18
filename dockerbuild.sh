@@ -1,3 +1,3 @@
-docker build -t authservice ./authservice/
-docker build -t connectorservice ./connectorservice/
-docker build -t apiservice ./apiservice/
+mvn -f ./authservice/pom.xml compile jib:dockerBuild
+mvn -f ./connectorservice/pom.xml compile jib:dockerBuild
+mvn -f ./apiservice/pom.xml compile jib:dockerBuild

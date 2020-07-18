@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kienast</groupId>
 	<artifactId>connectorservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>connectorservice</name>
 	<description>connectorservice</description>
 
@@ -119,6 +119,27 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
 			</plugin>
+			
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>1.8.0</version>
+				<configuration>
+			        <from>
+			            <image>adoptopenjdk/openjdk13:jre13u-alpine-nightly</image>
+			        </from>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>build-and-push-docker-image</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>build</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+			
 		</plugins>
     </build>
     

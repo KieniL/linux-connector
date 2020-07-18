@@ -1,7 +1,7 @@
 version: "3"
 services:
   apiservice:
-    image: apiservice
+    image: apiservice:1.0.0
     environment:
       - AUTH_URL=authservice:8082
       - CONN_URL=connectorservice:8081
@@ -17,12 +17,12 @@ services:
       - linux-connector
 
   authservice:
-    image: authservice
+    image: authservice:1.0.0
     networks:
       - linux-connector
  
   connectorservice:
-    image: connectorservice
+    image: connectorservice:1.0.0
     environment:
       - AUTH_URL=authservice:8082
     depends_on:

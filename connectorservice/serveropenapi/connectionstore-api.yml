@@ -113,6 +113,7 @@ components:
         - username
         - password
         - token
+        - sshkey
       properties:
         id:
           type: string
@@ -125,6 +126,8 @@ components:
         password:
           type: string
         token:
+          type: string
+        sshkey:
           type: string
 
           

@@ -7,12 +7,14 @@ public class CreateConnectionStoreCommand {
 	private int port;
 	private String username;
 	private String password;
+	private String sshkey;
 
-	public CreateConnectionStoreCommand(String hostname, int port, String username, String password) {
+	public CreateConnectionStoreCommand(String hostname, int port, String username, String password, String sshkey) {
 		this.hostname = hostname;
 		this.port = port;
 		this.username = username;
 		this.password =  password;
+		this.sshkey = sshkey;
 	}
 
 	public String getHostname() {
@@ -29,6 +31,10 @@ public class CreateConnectionStoreCommand {
 	
 	public String getPassword() {
 		return password;
+	}
+
+	public String getSshkey() {
+		return sshkey;
 	}
 
 

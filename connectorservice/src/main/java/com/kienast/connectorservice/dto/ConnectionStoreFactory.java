@@ -12,6 +12,7 @@ public final class ConnectionStoreFactory {
 		return new ConnectionStore(command.getHostname(),
 				command.getPort(),
 				command.getUsername(),
-				command.getPassword());
+				command.getPassword(),
+				command.getSshkey());
 	}
 }

@@ -138,8 +138,8 @@ public class ConnectionController implements ConnectionApi, ConnstoreApi {
 		
 		
 		CreateConnectionStoreCommand command = new CreateConnectionStoreCommand(connectionStoreModel.getHostname(),
-				connectionStoreModel.getPort(),
-				connectionStoreModel.getUsername(),connectionStoreModel.getPassword());
+				connectionStoreModel.getPort(),connectionStoreModel.getUsername(),
+				connectionStoreModel.getPassword(), connectionStoreModel.getSshkey());
 		ConnectionStoreStatus connStoreStatus = connectionStoreService.addStoredConnection(command);
 		ConnectionStoreStatusModel response = new ConnectionStoreStatusAdapter(connStoreStatus).createJson();
 		return ResponseEntity.ok(response);

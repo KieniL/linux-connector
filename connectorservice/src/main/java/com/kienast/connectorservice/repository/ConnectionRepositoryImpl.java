@@ -39,7 +39,8 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
 			ConnectionStore store = connectionStoreRepository.findByString(connectionRequest.getStoreId()).get();
 			Session session;
 			JSch jsch = new JSch();
-			jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
+			jsch.setKnownHosts(store.getSshkey());
+			//jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
 
 			session = jsch.getSession(store.getUsername(), store.getHostname(), store.getPort());
 			session.setPassword(store.getPassword());

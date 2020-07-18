@@ -31,6 +31,9 @@ public class ConnectionStoreModel   {
   @JsonProperty("token")
   private String token;
 
+  @JsonProperty("sshkey")
+  private String sshkey;
+
   public ConnectionStoreModel id(String id) {
     this.id = id;
     return this;
@@ -157,6 +160,27 @@ public class ConnectionStoreModel   {
     this.token = token;
   }
 
+  public ConnectionStoreModel sshkey(String sshkey) {
+    this.sshkey = sshkey;
+    return this;
+  }
+
+  /**
+   * Get sshkey
+   * @return sshkey
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getSshkey() {
+    return sshkey;
+  }
+
+  public void setSshkey(String sshkey) {
+    this.sshkey = sshkey;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -172,12 +196,13 @@ public class ConnectionStoreModel   {
         Objects.equals(this.port, connectionStore.port) &&
         Objects.equals(this.username, connectionStore.username) &&
         Objects.equals(this.password, connectionStore.password) &&
-        Objects.equals(this.token, connectionStore.token);
+        Objects.equals(this.token, connectionStore.token) &&
+        Objects.equals(this.sshkey, connectionStore.sshkey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, hostname, port, username, password, token);
+    return Objects.hash(id, hostname, port, username, password, token, sshkey);
   }
 
   @Override
@@ -191,6 +216,7 @@ public class ConnectionStoreModel   {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    sshkey: ").append(toIndentedString(sshkey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

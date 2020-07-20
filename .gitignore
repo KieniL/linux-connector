@@ -2,3 +2,5 @@
 .vscode
 .settings
 .idea
+
+frontend/src/api/openapi-generator-cli.jar

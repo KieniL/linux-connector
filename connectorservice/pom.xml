@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kienast</groupId>
 	<artifactId>connectorservice</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>connectorservice</name>
 	<description>connectorservice</description>
 
@@ -146,6 +146,9 @@
 			        <from>
 			            <image>adoptopenjdk/openjdk13:jre13u-alpine-nightly</image>
 			        </from>
+					<container>
+						<user>guest</user>
+					</container>
 			    </configuration>
 			    <executions>
 			        <execution>

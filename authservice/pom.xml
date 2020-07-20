@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kienast</groupId>
 	<artifactId>authservice</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>authservice</name>
 	<description>authSerfvice for Linux Connector</description>
 
@@ -159,6 +159,9 @@
 			        <from>
 			            <image>adoptopenjdk/openjdk13:jre13u-alpine-nightly</image>
 			        </from>
+					<container>
+						<user>guest</user>
+					</container>
 			    </configuration>
 			    <executions>
 			        <execution>

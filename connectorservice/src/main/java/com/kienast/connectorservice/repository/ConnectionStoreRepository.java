@@ -1,22 +1,11 @@
 package com.kienast.connectorservice.repository;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.kienast.connectorservice.command.DestroyConnectionStoreCommand;
-import com.kienast.connectorservice.command.UpdateConnectionStoreCommand;
-import com.kienast.connectorservice.model.ConnectionStore;
-import com.kienast.connectorservice.model.ConnectionStoreStatus;
+import com.kienast.connectorservice.model.ConnectionStoreEntity;
 
-public interface ConnectionStoreRepository {
+@Repository
+public interface ConnectionStoreRepository extends JpaRepository<ConnectionStoreEntity, Long> {
 
-	List<ConnectionStore> getConnections();
-	
-	ConnectionStoreStatus save(ConnectionStore connStore);
-	
-	ConnectionStoreStatus update(UpdateConnectionStoreCommand connStore);
-	
-	ConnectionStoreStatus delete(DestroyConnectionStoreCommand connStore);
-	
-	Optional<ConnectionStore> findByString(String storeId);
 }

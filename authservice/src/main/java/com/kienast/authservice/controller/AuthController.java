@@ -25,7 +25,7 @@ public class AuthController implements AuthApi{
 
 	
 	@Autowired
-    private UserRepository userEntityRepository;
+    private UserRepository userRepository;
 	
 	@Autowired
 	private TokenService tokenService;
@@ -68,7 +68,7 @@ public class AuthController implements AuthApi{
 		User entity = null;
 		
 		if(user == null) {
-			entity = userEntityRepository.save(new User(loginModel.getEmail(), hashPassword(loginModel.getPassword())));
+			entity = userRepository.save(new User(loginModel.getEmail(), hashPassword(loginModel.getPassword())));
 		}else {
 			System.out.println("Already exists");
 			throw(new NotAuthorizedException("already exists"));
@@ -100,7 +100,7 @@ public class AuthController implements AuthApi{
 	
 	
 	private User findByEmailAndPassword(String email, String password) {
-		return userEntityRepository.findAll().stream().filter(
+		return userRepository.findAll().stream().filter(
 				item -> item.getEmail().equals(email) && checkPass(password, item.getPassword())
 				).findFirst().get();
 	}

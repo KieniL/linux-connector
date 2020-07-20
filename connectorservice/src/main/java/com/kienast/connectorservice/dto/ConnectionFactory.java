@@ -10,6 +10,7 @@ public final class ConnectionFactory {
 
 	public static ConnectionRequest createNew(CreateConnectionCommand command) {
 		return new ConnectionRequest(
-				command.getStoreId());
+				command.getStoreId(),
+				command.getPassword());
 	}
 }

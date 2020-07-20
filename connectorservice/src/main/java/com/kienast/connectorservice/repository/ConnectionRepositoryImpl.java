@@ -1,6 +1,7 @@
 package com.kienast.connectorservice.repository;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +19,13 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.kienast.connectorservice.command.DestroyConnectionCommand;
 import com.kienast.connectorservice.command.ShellCommand;
+import com.kienast.connectorservice.exception.ConnectionStoreNotFoundException;
 import com.kienast.connectorservice.model.Connection;
 import com.kienast.connectorservice.model.ConnectionRequest;
 import com.kienast.connectorservice.model.ConnectionStatus;
 import com.kienast.connectorservice.model.ConnectionStore;
+import com.kienast.connectorservice.model.ConnectionStoreEntity;
+import com.kienast.connectorservice.util.PasswordCheck;
 
 @Component
 public class ConnectionRepositoryImpl implements ConnectionRepository {
@@ -36,28 +41,45 @@ public class ConnectionRepositoryImpl implements ConnectionRepository {
         int status = 200;
 		try {
 			
-			ConnectionStore store = connectionStoreRepository.findByString(connectionRequest.getStoreId()).get();
-			Session session;
-			JSch jsch = new JSch();
-			jsch.setKnownHosts(store.getSshkey());
-			//jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
+			
+			ConnectionStoreEntity entity = null;
+			try {
+				entity = connectionStoreRepository.findById(Long.valueOf(connectionRequest.getStoreId())).get();
+			}catch(java.util.NoSuchElementException e) {
+				System.out.println(e.getMessage());
+				throw(new ConnectionStoreNotFoundException(connectionRequest.getStoreId()));
+			}
+			
+			//Get password from request and compare with stored hash
+			if(PasswordCheck.checkPass(connectionRequest.getPassword(), entity.getPassword())) {
+				System.out.println("entity" + entity.getSshkey());
+				
+				ConnectionStore store = new ConnectionStore(entity.getHostname(), entity.getPort(),
+						entity.getUsername(), connectionRequest.getPassword(), entity.getSshkey());
+				
+				Session session;
+				JSch jsch = new JSch();
+				jsch.setKnownHosts(new ByteArrayInputStream( entity.getSshkey().getBytes()));
+				//jsch.setKnownHosts(System.getProperty("user.home")+"/.ssh/known_hosts");
 
-			session = jsch.getSession(store.getUsername(), store.getHostname(), store.getPort());
-			session.setPassword(store.getPassword());
-			session.connect(3000);
-			
+				session = jsch.getSession(store.getUsername(), store.getHostname(), store.getPort());
+				session.setPassword(store.getPassword());
+				session.connect(3000);
+				
 
-			
-			connections.add(new Connection(store.getId(),
-					store.getHostname(),
-					store.getPort(),
-					store.getUsername(),
-					store.getPassword(),
-					session.toString()));
-			
-			sessions.add(session);
-			
-			
+				store.setId(String.valueOf(connections.size() + 1));
+				connections.add(new Connection(store.getId(),
+						store.getHostname(),
+						store.getPort(),
+						store.getUsername(),
+						store.getPassword(),
+						session.toString()));
+				
+				sessions.add(session);
+			}else {
+				return new ConnectionStatus(500);
+			}
+
 		} catch (Exception e) {
 			System.err.println("Error: " + e);
 			return new ConnectionStatus(500);

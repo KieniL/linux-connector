@@ -69,7 +69,7 @@ services:
       - linux-connector
 
   conndb:
-    image: postgres:11-alpine
+    build: ./conndb
     environment:
       - POSTGRES_PASSWORD=conn
       - POSTGRES_USER=conn

@@ -3,14 +3,14 @@ package com.kienast.connectorservice.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value=HttpStatus.NOT_FOUND, reason = "No surch Connection Store")
-public class ConnectionStoreNotFoundException extends RuntimeException {
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason = "Already exists")
+public class ConnectionStoreExistsException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
 	private final String id;
 
-	public ConnectionStoreNotFoundException(String id) {
+	public ConnectionStoreExistsException(String id) {
 		this.id = id;
 	}
 

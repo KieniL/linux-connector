@@ -16,9 +16,6 @@ public class TokenModel   {
   @JsonProperty("token")
   private String token;
 
-  @JsonProperty("userid")
-  private String userid;
-
   public TokenModel token(String token) {
     this.token = token;
     return this;
@@ -40,27 +37,6 @@ public class TokenModel   {
     this.token = token;
   }
 
-  public TokenModel userid(String userid) {
-    this.userid = userid;
-    return this;
-  }
-
-  /**
-   * Get userid
-   * @return userid
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getUserid() {
-    return userid;
-  }
-
-  public void setUserid(String userid) {
-    this.userid = userid;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,13 +47,12 @@ public class TokenModel   {
       return false;
     }
     TokenModel token = (TokenModel) o;
-    return Objects.equals(this.token, token.token) &&
-        Objects.equals(this.userid, token.userid);
+    return Objects.equals(this.token, token.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(token, userid);
+    return Objects.hash(token);
   }
 
   @Override
@@ -86,7 +61,6 @@ public class TokenModel   {
     sb.append("class TokenModel {\n");
     
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    userid: ").append(toIndentedString(userid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

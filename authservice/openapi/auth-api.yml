@@ -6,6 +6,24 @@ servers:
   - url: api/auth
 paths:
   /auth:
+    patch:
+      summary: Register
+      operationId: register
+      tags:
+        -  auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        200:
+          description: Schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
     post:
       summary: Authenticate
       operationId: authenticate
@@ -47,11 +65,8 @@ components:
     Token:
       required:
         - token
-        - userid
       properties:
         token:
-          type: string
-        userid:
           type: string
     Login:
       required:

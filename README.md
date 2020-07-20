@@ -15,6 +15,9 @@ Set environment variable on host machine (variableName = AUTH_URL) for the auths
 Additionally set the variables for the services on the machine where the apiservice runs if not used with docker (variableNames are AUTH_URL and CONN_URL)
 The variablenames should be URL:port e.g http://localhost:8082 (authservice)
 
+For Database set variables for connector und authservice
+See variables in docker-compose yaml
+
 # Containerization
 Run dockerbuild.sh to build the container images
 Run docker-compose up -d to create the containers based on images

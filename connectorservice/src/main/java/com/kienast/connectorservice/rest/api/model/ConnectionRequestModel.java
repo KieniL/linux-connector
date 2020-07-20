@@ -19,6 +19,9 @@ public class ConnectionRequestModel   {
   @JsonProperty("token")
   private String token;
 
+  @JsonProperty("password")
+  private String password;
+
   public ConnectionRequestModel id(String id) {
     this.id = id;
     return this;
@@ -28,7 +31,8 @@ public class ConnectionRequestModel   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
   public String getId() {
@@ -60,6 +64,27 @@ public class ConnectionRequestModel   {
     this.token = token;
   }
 
+  public ConnectionRequestModel password(String password) {
+    this.password = password;
+    return this;
+  }
+
+  /**
+   * Get password
+   * @return password
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,12 +96,13 @@ public class ConnectionRequestModel   {
     }
     ConnectionRequestModel connectionRequest = (ConnectionRequestModel) o;
     return Objects.equals(this.id, connectionRequest.id) &&
-        Objects.equals(this.token, connectionRequest.token);
+        Objects.equals(this.token, connectionRequest.token) &&
+        Objects.equals(this.password, connectionRequest.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, token);
+    return Objects.hash(id, token, password);
   }
 
   @Override
@@ -86,6 +112,7 @@ public class ConnectionRequestModel   {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

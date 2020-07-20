@@ -19,11 +19,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.kienast.authservice.command.LoginUserCommand;
 import com.kienast.authservice.model.User;
 import com.kienast.authservice.repository.UserRepository;
 import com.kienast.authservice.service.TokenService;
-import com.kienast.authservice.service.UserService;
 
 
 @WebMvcTest(controllers = AuthController.class)
@@ -32,9 +30,6 @@ class AuthControllerTest {
 	
 	@Autowired
     private MockMvc mockMvc;
-	
-	@MockBean
-	private UserService userService;
 	
 	@MockBean
 	private TokenService tokenService;
@@ -48,6 +43,7 @@ class AuthControllerTest {
 	
 	private List<User> users;
 
+	/*
 	//Not Done atm since no idea why not true
 	void testAuthenticate() throws Exception {
 		
@@ -57,13 +53,6 @@ class AuthControllerTest {
 		};
 		
 
-
-		//init Test Data
-		users = new ArrayList<>();
-		users.add(new User("1", "test1234@gmail.com", passwordEncoder.encode("password")));
-		users.add(new User("2", "testuser@gmail.com", passwordEncoder.encode("password")));
-		
-		LoginUserCommand command = new LoginUserCommand(users.get(1).getEmail(), "password");
 		
 		
 		//MockService
@@ -111,6 +100,6 @@ class AuthControllerTest {
 		this.mockMvc.perform(put("/auth").contentType(MediaType.APPLICATION_JSON)
 				.content(jsonBody))
 	       .andExpect(status().isForbidden());
-	}
+	}*/
 
 }

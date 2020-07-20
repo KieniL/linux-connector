@@ -13,12 +13,15 @@ public class ConnectionStore {
 
 	private String password;
 	
+	private String sshkey;
+	
 
-	public ConnectionStore(String hostname, int port, String username, String password) {
+	public ConnectionStore(String hostname, int port, String username, String password, String sshkey) {
 		this.hostname = hostname;
 		this.port = port;
 		this.username = username;
 		this.password = password;
+		this.sshkey = sshkey;
 	}
 
 	public String getHostname() {
@@ -59,5 +62,13 @@ public class ConnectionStore {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getSshkey() {
+		return sshkey;
+	}
+
+	public void setSshkey(String sshkey) {
+		this.sshkey = sshkey;
 	}
 }

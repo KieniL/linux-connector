@@ -1,4 +1,11 @@
-version: "3"
+version: "3.4"
+volumes:
+  auth_data:
+    name: auth_data_001
+  conn_data:
+    name: conn_data_001
+
+
 services:
   apiservice:
     image: apiservice:1.0.0
@@ -18,17 +25,59 @@ services:
 
   authservice:
     image: authservice:1.0.0
+    environment:
+      - DB_AUTH_HOST=authdb:5432
+      - DB_AUTH_USER=auth
+      - DB_AUTH_PASS=auth
+      - DB_AUTH_DB=auth
+    depends_on: 
+      - authdb
+    links:
+      - "authdb:authdb"
     networks:
       - linux-connector
+
+
+  authdb:
+    build: ./authdb
+    environment:
+      - POSTGRES_PASSWORD=auth
+      - POSTGRES_USER=auth
+      - POSTGRES_DB=auth
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth_data:/var/lib/postgresql/data
+    networks:
+      - linux-connector
+
  
   connectorservice:
     image: connectorservice:1.0.0
     environment:
       - AUTH_URL=authservice:8082
+      - DB_CONN_HOST=conndb:5432
+      - DB_CONN_USER=conn
+      - DB_CONN_PASS=conn
+      - DB_CONN_DB=conn
     depends_on:
       - authservice
+      - conndb
     links:
       - "authservice:authservice"
+    networks:
+      - linux-connector
+
+  conndb:
+    image: postgres:11-alpine
+    environment:
+      - POSTGRES_PASSWORD=conn
+      - POSTGRES_USER=conn
+      - POSTGRES_DB=conn
+    ports:
+      - "5433:5432"
+    volumes:
+      - conn_data:/var/lib/postgresql/data
     networks:
       - linux-connector
 

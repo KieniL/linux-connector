@@ -38,6 +38,16 @@ public interface AuthApi {
     ResponseEntity<TokenModel> authenticate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody LoginModel loginModel);
 
 
+    @ApiOperation(value = "Register", nickname = "register", notes = "", response = TokenModel.class, tags={ "auth", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Schemas", response = TokenModel.class) })
+    @RequestMapping(value = "/auth",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PATCH)
+    ResponseEntity<TokenModel> register(@ApiParam(value = "" ,required=true )  @Valid @RequestBody LoginModel loginModel);
+
+
     @ApiOperation(value = "VerifyToken", nickname = "verifyToken", notes = "", response = TokenModel.class, tags={ "auth", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Schemas", response = TokenModel.class) })

@@ -39,7 +39,7 @@ services:
 
 
   authdb:
-    build: ./authdb
+    build: ./backend/authdb
     environment:
       - POSTGRES_PASSWORD=auth
       - POSTGRES_USER=auth
@@ -69,7 +69,7 @@ services:
       - linux-connector
 
   conndb:
-    build: ./conndb
+    build: ./backend/conndb
     environment:
       - POSTGRES_PASSWORD=conn
       - POSTGRES_USER=conn

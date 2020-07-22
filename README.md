@@ -18,6 +18,9 @@ The variablenames should be URL:port e.g http://localhost:8082 (authservice)
 For Database set variables for connector und authservice
 See variables in docker-compose yaml
 
+
+On frontend host Set the environment variable (REACT_APP_APISERVER) to the host of the backend
+
 # Containerization
 Run dockerbuild.sh to build the container images
 Run docker-compose up -d to create the containers based on images

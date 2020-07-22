@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Used command: npx create-react-app my-app --template typescript
 
+## Steps
+Generate the api<br/>
+Create an api.ts file in the rootfolder, which creates instances of the api and export them
+
 ## Available Scripts
 
 In the project directory, you can run:

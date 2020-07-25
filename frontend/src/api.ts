@@ -12,10 +12,7 @@ import axios from "axios";
 // Create axios instance
 const axiosInstance = axios.create();
 
-// Configuration and base path are not provided
-const connstoreApiService = new ConnstoreApi(undefined, process.env.REACT_APP_APISERVER+"/connstore", axiosInstance);
-const connectionApiService = new ConnectionApi(undefined, process.env.REACT_APP_APISERVER+"/connection", axiosInstance);
-const authApiService = new AuthApi(undefined, process.env.REACT_APP_APISERVER+"/auth", axiosInstance);
-
-console.log(process.env.REACT_APP_APISERVER+"/connstore");
+const connstoreApiService = new ConnstoreApi(undefined, process.env.REACT_APP_API_URL, axiosInstance);
+const connectionApiService = new ConnectionApi(undefined, process.env.REACT_APP_API_URL, axiosInstance);
+const authApiService = new AuthApi(undefined, process.env.REACT_APP_API_URL, axiosInstance);
 export { connstoreApiService, connectionApiService, authApiService, axiosInstance };

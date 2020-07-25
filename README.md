@@ -19,7 +19,7 @@ For Database set variables for connector und authservice
 See variables in docker-compose yaml
 
 
-On frontend host Set the environment variable (REACT_APP_APISERVER) to the host of the backend
+On frontend host Set the environment variable in .env file to the host of the backend
 
 # Containerization
 Run dockerbuild.sh to build the container images

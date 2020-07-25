@@ -81,5 +81,15 @@ services:
     networks:
       - linux-connector
 
+  frontend:
+    image: frontend:1.00
+    depends_on:
+      - apiservice
+    links:
+      - "apiservice:apiservice"
+    ports:
+      - "80:80"
+    networks:
+      - linux-connector
 networks:
   linux-connector:

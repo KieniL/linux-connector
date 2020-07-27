@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import { Nav, About, Contact, Projects } from './component/export';
 import { connstoreApiService } from "./api";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App: React.FC = () => {
   const [stores, setStores] = useState<any[]>([]);
@@ -17,7 +19,26 @@ const App: React.FC = () => {
 
 
   return (
-    <div>
+      <div className="app">
+        <Router>
+          <Nav/>
+          <Switch>
+            <Route path="/about" component={About}></Route>
+            <Route path="/contact" component={Contact}></Route>
+            <Route path="/projects" component={Projects}></Route>
+          </Switch>
+        </Router>
+        
+      </div>
+    
+  );
+};
+
+
+export default App;
+
+/*
+<div>
       <table>
         <thead>
           <tr>
@@ -38,7 +59,4 @@ const App: React.FC = () => {
         </tbody>
       </table>
     </div>
-  );
-};
-
-export default App;
+    */

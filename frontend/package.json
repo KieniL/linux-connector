@@ -13,7 +13,9 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "router": "^1.3.5",
     "typescript": "^3.7.5",
     "typescript-axios": "^1.0.0"
   },

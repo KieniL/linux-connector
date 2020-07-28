@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: sans-serif;
 }
@@ -47,7 +48,7 @@ nav {
     color: #ae5fce;
 }
 /* Only do on devices with lower width than 768 px*/
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1000px){
 
     /*Creates a hamburger*/
     .line {
@@ -64,7 +65,7 @@ nav {
     .hamburger {
         position: absolute;
         cursor: pointer;
-        right: 5%;
+        left: 5%;
         top: 50%;
         transform: translate(-5%, -50%);
         z-index: 2; /*With this the hamburger doesn't disappear on click*/
@@ -75,15 +76,15 @@ nav {
         height: 100vh;
         width: 100%;
         flex-direction: column;
-        clip-path: circle(100px at 90% -10%); /*Create a circle from the nav*/
-        -webkit-clip-path:circle(100px at 90% -10%); /*Do this so every browser does it right*/
+        clip-path: circle(50px at 90% -10%); /*Create a circle from the nav*/
+        -webkit-clip-path:circle(50px at 90% -10%); /*Do this so every browser does it right*/
         transition: all 0.5s ease-out;
         pointer-events: none;
     }
 
     /*This class is added with javascript so the navbar is in front*/
     .nav_links.open {
-        clip-path: circle(1200px at 90% -10%); /*Create a circle from the nav*/
+        clip-path: circle(1200px at 60% -20%); /*Create a circle from the nav*/
         -webkit-clip-path:circle(1200px at 90% -10%); /*Do this so every browser does it right*/
         pointer-events: all;
     }
@@ -96,7 +97,7 @@ nav {
         font-size: 25px;
     }
 
-    Transition the navlinks one after another
+
     .nav_links li:nth-child(1) {
         transition: all 0.5s ease 0.2s;
     }
@@ -112,4 +113,24 @@ nav {
     .toggle {
         opacity: 1;
     }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+      
+      .hamburger-click .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+      }
+      
+      .hamburger-click .bar2 {opacity: 0;}
+      
+      .hamburger-click .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+      }
 }

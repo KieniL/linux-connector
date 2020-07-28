@@ -6,9 +6,10 @@ class Nav extends React.Component {
 
     navLinkCondition = false;
     navCondition = false;
+    clicked = 0;
+    hamburgerClick () {
+        this.clicked = this.clicked + 1;
 
-
-    hamburgerClick = () => {
         if(this.navCondition){
             this.navCondition = false;
         }else{
@@ -22,13 +23,17 @@ class Nav extends React.Component {
         }
     
       }
+
+    
+
     render() {
         return  (
             <nav>
-                <div className="hamburger" onClick={() => this.hamburgerClick()}>
-                    <div className="line"></div>
-                    <div className="line"></div>
-                    <div className="line"></div>
+                {this.clicked}
+                <div className={this.navCondition ? "hamburger hamburger-click" : "hamburger"} onClick={() => { this.hamburgerClick() }}>
+                    <div className="line bar1"></div>
+                    <div className="line bar2"></div>
+                    <div className="line bar3"></div>
                 </div>
                 <ul className={this.navCondition ? "nav_links open" : "nav_links"}>
                     <Link to="/about">
@@ -39,11 +44,13 @@ class Nav extends React.Component {
                     </Link> 
                     <Link to="/projects">
                         <li className={this.navLinkCondition ? "toggle" : ""}>Projects</li>
-                    </Link>    
+                    </Link>
+                    
                 </ul>
             </nav>
             
         );
+        
     }
 }
 

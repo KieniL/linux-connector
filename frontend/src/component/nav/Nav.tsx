@@ -2,14 +2,21 @@ import React from 'react';
 import './Nav.css';
 import { Link } from "react-router-dom";
 
-class Nav extends React.Component {
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+/*import Button from 'react-bootstrap/Button';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';*/
+//import FormControl from 'react-bootstrap/FormControl';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+class Navigation extends React.Component {
 
     navLinkCondition = false;
     navCondition = false;
-    clicked = 0;
+    
     hamburgerClick () {
-        this.clicked = this.clicked + 1;
-
         if(this.navCondition){
             this.navCondition = false;
         }else{
@@ -25,16 +32,45 @@ class Nav extends React.Component {
       }
 
     
-
+      
     render() {
         return  (
-            <nav>
-                {this.clicked}
-                <div className={this.navCondition ? "hamburger hamburger-click" : "hamburger"} onClick={() => { this.hamburgerClick() }}>
+            <Navbar bg="light" expand="lg" fixed="top">
+                <Navbar.Brand href="#home">Home</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                            <Link to="/about">
+                                <Nav.Link href="#pricing">About</Nav.Link>                            
+                            </Link>
+                            <Link to="/contact">
+                                <Nav.Link href="#pricing">Contact</Nav.Link>                            
+                            </Link>
+                            <Link to="/projects">
+                                <Nav.Link href="#pricing">Projects</Nav.Link>                            
+                            </Link>  
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+                /*<Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#link">Link</Nav.Link>
+                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                            <Link to="/about">
+                                <li className={this.navLinkCondition ? "toggle" : ""}>About</li>
+                            </Link>
+                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        </NavDropdown>*/
+            /*<nav>
+                <div className={this.navCondition ? "hamburger hamburger-click" : "hamburger"} onClick={() => {this.hamburgerClick()}} >
                     <div className="line bar1"></div>
                     <div className="line bar2"></div>
                     <div className="line bar3"></div>
                 </div>
+                
                 <ul className={this.navCondition ? "nav_links open" : "nav_links"}>
                     <Link to="/about">
                         <li className={this.navLinkCondition ? "toggle" : ""}>About</li>
@@ -47,7 +83,7 @@ class Nav extends React.Component {
                     </Link>
                     
                 </ul>
-            </nav>
+            </nav>*/
             
         );
         
@@ -57,4 +93,4 @@ class Nav extends React.Component {
 
 
 
-export default Nav;
+export default Navigation;

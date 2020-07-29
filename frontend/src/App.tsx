@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
-import { Nav, About, Contact, Projects } from './component/export';
+import { Navigation, About, Contact, Projects, Footer } from './component/export';
 import { connstoreApiService } from "./api";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -21,12 +21,13 @@ const App: React.FC = () => {
   return (
       <div className="app">
         <Router>
-          <Nav/>
+          <Navigation/>
           <Switch>
             <Route path="/about" component={About}></Route>
             <Route path="/contact" component={Contact}></Route>
             <Route path="/projects" component={Projects}></Route>
           </Switch>
+          <Footer/>
         </Router>
         
       </div>

@@ -1,3 +1,4 @@
+
 * { /*Set all to null so there is no interference*/
     margin: 0;
     padding: 0;
@@ -9,19 +10,20 @@ body {
     font-family: sans-serif;
 }
 
+/*
 nav {
     height: 10vh;
     background: #5b78c7;
 }
 
 .nav_links {
-    list-style: none; /*Remove dots from list*/
+    list-style: none; //Remove dots from list
     width: 50%;
     height: 100%;
     justify-content: space-around;
     align-items: center;
     display: flex;
-    margin-left: auto; /*with this the nav is on the right*/
+    margin-left: auto; //with this the nav is on the right
 }
 
 .nav_links li {
@@ -47,10 +49,11 @@ nav {
     font-size: 50px;
     color: #ae5fce;
 }
-/* Only do on devices with lower width than 768 px*/
+*/
+/* Only do on devices with lower width than 768 px
 @media screen and (max-width: 1000px){
 
-    /*Creates a hamburger*/
+    /*Creates a hamburger
     .line {
         width: 30px;
         height: 3px;
@@ -61,14 +64,14 @@ nav {
         position: relative;
     }
 
-    /*Place the hamburger on the right*/
+    /*Place the hamburger on the right
     .hamburger {
         position: absolute;
         cursor: pointer;
         left: 5%;
         top: 50%;
         transform: translate(-5%, -50%);
-        z-index: 2; /*With this the hamburger doesn't disappear on click*/
+        z-index: 2; /*With this the hamburger doesn't disappear on click
     }
     .nav_links {
         position: fixed;
@@ -76,16 +79,16 @@ nav {
         height: 100vh;
         width: 100%;
         flex-direction: column;
-        clip-path: circle(50px at 90% -10%); /*Create a circle from the nav*/
-        -webkit-clip-path:circle(50px at 90% -10%); /*Do this so every browser does it right*/
+        clip-path: circle(50px at 90% -10%); /*Create a circle from the nav
+        -webkit-clip-path:circle(50px at 90% -10%); /*Do this so every browser does it right
         transition: all 0.5s ease-out;
         pointer-events: none;
     }
 
-    /*This class is added with javascript so the navbar is in front*/
+    /*This class is added with javascript so the navbar is in front
     .nav_links.open {
-        clip-path: circle(1200px at 60% -20%); /*Create a circle from the nav*/
-        -webkit-clip-path:circle(1200px at 90% -10%); /*Do this so every browser does it right*/
+        clip-path: circle(1200px at 60% -20%); /*Create a circle from the nav
+        -webkit-clip-path:circle(1200px at 90% -10%); /*Do this so every browser does it right
         pointer-events: all;
     }
 
@@ -134,3 +137,4 @@ nav {
         transform: rotate(45deg) translate(-8px, -8px);
       }
 }
+*/

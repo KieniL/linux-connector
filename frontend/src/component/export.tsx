@@ -1,13 +1,14 @@
 //Used to provide a point for imports
 import About from './about/About';
 import Contact from './contact/Contact';
-import Nav from './nav/Nav';
+import Navigation from './nav/Nav';
 import Projects from './projects/Projects';
-
+import Footer from './footer/Footer';
 
 export {
-    Nav,
+    Navigation,
     Projects,
     About,
-    Contact
+    Contact,
+    Footer
 }

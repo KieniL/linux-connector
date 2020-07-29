@@ -3,8 +3,10 @@ import './Footer.css';
 
 function Footer() {
     return  (
-        <footer id="footer">Footer Content — Header.com 2020</footer>
-    );
+        <footer>
+          Kienast Inc, Since 2019
+        </footer>
+        );
 }
 
 export default Footer;

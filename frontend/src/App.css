@@ -1,0 +1,5 @@
+#projects:before, #contact:before, #about:before {
+    content: ' ';
+    display: block;
+    height: 5rem;
+  }

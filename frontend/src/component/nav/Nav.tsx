@@ -36,7 +36,9 @@ class Navigation extends React.Component {
     render() {
         return  (
             <Navbar bg="light" expand="lg" fixed="top">
-                <Navbar.Brand href="#home">Home</Navbar.Brand>
+                <Link to="/">
+                    <Navbar.Brand >Home</Navbar.Brand>                           
+                </Link>               
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

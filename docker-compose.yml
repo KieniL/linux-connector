@@ -8,7 +8,7 @@ volumes:
 
 services:
   apiservice:
-    image: apiservice:1.0.1
+    image: apiservice:latest
     environment:
       - AUTH_URL=authservice:8082
       - CONN_URL=connectorservice:8081
@@ -24,7 +24,7 @@ services:
       - linux-connector
 
   authservice:
-    image: authservice:1.0.1
+    image: authservice:latest
     environment:
       - DB_AUTH_HOST=authdb:5432
       - DB_AUTH_USER=auth
@@ -53,7 +53,7 @@ services:
 
  
   connectorservice:
-    image: connectorservice:1.0.1
+    image: connectorservice:latest
     environment:
       - AUTH_URL=authservice:8082
       - DB_CONN_HOST=conndb:5432
@@ -82,7 +82,7 @@ services:
       - linux-connector
 
   frontend:
-    image: frontend:1.00
+    image: frontend:latest
     depends_on:
       - apiservice
     links:

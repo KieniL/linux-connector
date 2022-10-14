@@ -28,7 +28,7 @@
 		<dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
-	    	<version>0.3m</version>
+	    	<version>0.4</version>
         </dependency>
 	
 		<!-- Both Dependency needed for hibernate and postgres -->
